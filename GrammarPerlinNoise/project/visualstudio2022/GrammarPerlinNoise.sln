@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GrammarPerlinNoise", "GrammarPerlinNoise.vcxproj", "{C1B5C848-E44C-4E48-830F-99C6FEEC16DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1B5C848-E44C-4E48-830F-99C6FEEC16DD}.Debug|x64.ActiveCfg = Debug|x64
+		{C1B5C848-E44C-4E48-830F-99C6FEEC16DD}.Debug|x64.Build.0 = Debug|x64
+		{C1B5C848-E44C-4E48-830F-99C6FEEC16DD}.Debug|x86.ActiveCfg = Debug|Win32
+		{C1B5C848-E44C-4E48-830F-99C6FEEC16DD}.Debug|x86.Build.0 = Debug|Win32
+		{C1B5C848-E44C-4E48-830F-99C6FEEC16DD}.Release|x64.ActiveCfg = Release|x64
+		{C1B5C848-E44C-4E48-830F-99C6FEEC16DD}.Release|x64.Build.0 = Release|x64
+		{C1B5C848-E44C-4E48-830F-99C6FEEC16DD}.Release|x86.ActiveCfg = Release|Win32
+		{C1B5C848-E44C-4E48-830F-99C6FEEC16DD}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46712D99-4F1C-4BA0-B736-10390C76F6D6}
+	EndGlobalSection
+EndGlobal
