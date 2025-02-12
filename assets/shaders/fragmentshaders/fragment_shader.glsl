@@ -58,17 +58,22 @@ void main() {
     // Generate base noise value
     float noise = fbm(noiseCoord);
     
-    // Map noise to color gradient
-    vec3 color1 = vec3(0.2, 0.3, 0.8); // Deep blue
-    vec3 color2 = vec3(0.8, 0.8, 1.0); // Light blue
-    vec3 finalColor = mix(color1, color2, noise * 0.5 + 0.5);
+    // Map noise from [-1,1] to [0,1] range
+	//float grayscale = noise * 0.5 + 0.5;
+	
+    float grayscale = clamp(noise * 0.8 + 0.5, 0.0, 1.0); //More contrast
+	
+	//float grayscale = pow(noise * 0.5 + 0.5, 2.0); //Sharper transitions
+    
+    // Create grayscale color
+    vec3 finalColor = vec3(grayscale);
     
     // Add lighting based on normal
     vec3 normal = normalize(mat3(normal_matrix) * vertex_normal);
     vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
     float diffuse = max(dot(normal, lightDir), 0.0);
     
-    // Combine noise color with lighting
+    // Combine noise with lighting
     finalColor = finalColor * (diffuse * 0.7 + 0.3);
     
     fragment_color = vec4(finalColor, 1.0);
