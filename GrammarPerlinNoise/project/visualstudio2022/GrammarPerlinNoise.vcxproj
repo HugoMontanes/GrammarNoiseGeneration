@@ -102,14 +102,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\libraries\sdl\include;..\..\..\libraries\glad\include;..\..\..\libraries\glm\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\libraries\sdl\include;..\..\..\libraries\glad\include;..\..\..\libraries\glm\include;..\..\..\libraries\stb\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\..\libraries\sdl\lib\windows\visual-studio-2022\static-x64;..\..\..\libraries\glad\lib\windows\visual-studio-2022\static-x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\libraries\sdl\lib\windows\visual-studio-2022\static-x64;..\..\..\libraries\glad\lib\windows\visual-studio-2022\static-x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2-staticd.lib;SDL2maind.lib;gladd.lib;imm32.lib;setupapi.lib;version.lib;winmm.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -119,16 +119,16 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\libraries\sdl\include;..\..\..\libraries\glad\include;..\..\..\libraries\glm\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\libraries\sdl\include;..\..\..\libraries\glad\include;..\..\..\libraries\glm\include;..\..\..\libraries\stb\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\..\libraries\sdl\lib\windows\visual-studio-2022\static-x64;..\..\..\libraries\glad\lib\windows\visual-studio-2022\static-x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\libraries\sdl\lib\windows\visual-studio-2022\static-x64;..\..\..\libraries\glad\lib\windows\visual-studio-2022\static-x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2-static.lib;SDL2main.lib;glad.lib;imm32.lib;setupapi.lib;version.lib;winmm.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -137,6 +137,7 @@
     <ClCompile Include="..\..\code\Mesh.cpp" />
     <ClCompile Include="..\..\code\Plane.cpp" />
     <ClCompile Include="..\..\code\Scene.cpp" />
+    <ClCompile Include="..\..\code\Screenshot.cpp" />
     <ClCompile Include="..\..\code\Shader.cpp" />
     <ClCompile Include="..\..\code\Window.cpp" />
   </ItemGroup>
@@ -147,6 +148,7 @@
     <ClInclude Include="..\..\code\Plane.hpp" />
     <ClInclude Include="..\..\code\Scene.hpp" />
     <ClInclude Include="..\..\code\SceneNode.hpp" />
+    <ClInclude Include="..\..\code\Screenshot.hpp" />
     <ClInclude Include="..\..\code\Shader.hpp" />
     <ClInclude Include="..\..\code\ShaderProgram.hpp" />
     <ClInclude Include="..\..\code\VertexShader.hpp" />

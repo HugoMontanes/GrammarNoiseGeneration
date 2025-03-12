@@ -18,7 +18,7 @@ namespace space
 
 		shader_program = std::make_unique<ShaderProgram>();
 
-		
+		screenshotExporter = std::make_unique<ScreenshotExporter>("../../../assets/database_images");
 
 		VertexShader vertex_shader;
 		if (!vertex_shader.loadFromFile("../../../assets/shaders/vertexshaders/vertex_shader.glsl"))
@@ -193,6 +193,17 @@ namespace space
 
 		// Reset key
 		keyStates[SDL_SCANCODE_C] = keyboardState[SDL_SCANCODE_C];
+
+		//Screenshot key - check if Z was just pressed
+		static bool ZWasPressed = false;
+		bool ZIsPressed = keyboardState[SDL_SCANCODE_Z];
+
+		if (ZIsPressed && !ZWasPressed)
+		{
+			takeScreenshot(ScreenshotExporter::ImageFormat::PNG);
+		}
+
+		ZWasPressed = ZIsPressed;
 	}
 	void Scene::updateCamera(float deltaTime)
 	{
@@ -263,6 +274,12 @@ namespace space
 		{
 			activeCamera->rotation = defaultCameraRotation;
 		}
+	}
+	bool Scene::takeScreenshot(ScreenshotExporter::ImageFormat format)
+	{
+		int width, height;
+		SDL_GetWindowSize(SDL_GL_GetCurrentWindow(), &width, &height);
+		return screenshotExporter->captureScreenshot(width, height, format);
 	}
 }
 

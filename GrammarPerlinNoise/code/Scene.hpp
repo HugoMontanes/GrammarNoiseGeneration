@@ -18,6 +18,7 @@
 #include "FragmentShader.hpp"
 #include "SceneNode.hpp"
 #include "Camera.hpp"
+#include "Screenshot.hpp"
 #include <unordered_map>
 
 namespace space
@@ -29,6 +30,7 @@ namespace space
         std::unique_ptr<ShaderProgram> shader_program;
         std::shared_ptr<SceneNode> root;
         std::shared_ptr<Camera> activeCamera;
+        std::unique_ptr<ScreenshotExporter> screenshotExporter;
 
         float cameraSpeed = 10.0f;
         float cameraRotationSpeed = 2.0f;
@@ -58,5 +60,7 @@ namespace space
         void handleKeyboard(const Uint8* keyboardState);
         void updateCamera(float deltaTime);
         void resetCameraRotation();
+
+        bool takeScreenshot(ScreenshotExporter::ImageFormat format = ScreenshotExporter::ImageFormat::PNG);
     };
 }

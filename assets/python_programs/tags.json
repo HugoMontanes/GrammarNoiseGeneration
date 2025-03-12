@@ -1,0 +1,8 @@
+{
+  "texture1.jpg": {
+    "tags": ["perlin"],
+    "parameters": {
+      "frequency": 2.0,
+      "amplitude": 0.5,
+      "octaves": 6
+    }
