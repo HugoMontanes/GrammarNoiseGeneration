@@ -61,11 +61,15 @@ namespace space
 		activeCamera->rotation = glm::vec3(-0.4f, 0.0f, 0.0f);
 		root->addChild(activeCamera);
 
-		auto planeNode = std::make_shared<SceneNode>("plane");
+		/*auto planeNode = std::make_shared<SceneNode>("plane");
 		planeNode->mesh = std::make_shared<Plane>(5, 5, 40.0f, 40.0f);
 		planeNode->position = glm::vec3(0, -2, 0);
 		planeNode->rotation = glm::vec3(1.15, 0, 0);
-		root->addChild(planeNode);
+		root->addChild(planeNode);*/
+
+		auto quadNode = std::make_shared<SceneNode>("screen_quad");
+		quadNode->mesh = std::make_shared<ScreenQuad>();
+		root->addChild(quadNode);
 
 		resize(width, height);
 
@@ -93,14 +97,23 @@ namespace space
 		{
 			shader_program->use();
 
-			// Calculate matrices
-			glm::mat4 model_matrix = node->getWorldTransform();
-			glm::mat4 model_view_matrix = viewMatrix * model_matrix;
-			glm::mat4 normal_matrix = glm::transpose(glm::inverse(model_view_matrix));
+			// Special case for screen quad
+			if (node->name == "screen_quad") {
+				// Use identity matrices for the screen quad
+				glm::mat4 identity(1.0f);
+				glUniformMatrix4fv(model_view_matrix_id, 1, GL_FALSE, glm::value_ptr(identity));
+				glUniformMatrix4fv(normal_matrix_id, 1, GL_FALSE, glm::value_ptr(identity));
+				glUniformMatrix4fv(projection_matrix_id, 1, GL_FALSE, glm::value_ptr(identity));
+			}
+			else {
+				// Regular model-view-projection for other objects
+				glm::mat4 model_matrix = node->getWorldTransform();
+				glm::mat4 model_view_matrix = viewMatrix * model_matrix;
+				glm::mat4 normal_matrix = glm::transpose(glm::inverse(model_view_matrix));
 
-			// Send matrices to shader
-			glUniformMatrix4fv(model_view_matrix_id, 1, GL_FALSE, glm::value_ptr(model_view_matrix));
-			glUniformMatrix4fv(normal_matrix_id, 1, GL_FALSE, glm::value_ptr(normal_matrix));
+				glUniformMatrix4fv(model_view_matrix_id, 1, GL_FALSE, glm::value_ptr(model_view_matrix));
+				glUniformMatrix4fv(normal_matrix_id, 1, GL_FALSE, glm::value_ptr(normal_matrix));
+			}
 
 			// Render the mesh
 			node->mesh->render();
@@ -110,7 +123,6 @@ namespace space
 		for (const auto& child : node->children) {
 			renderNode(child, viewMatrix);
 		}
-		
 	}
 
 	void Scene::render()

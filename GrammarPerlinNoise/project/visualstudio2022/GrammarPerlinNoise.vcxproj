@@ -137,6 +137,7 @@
     <ClCompile Include="..\..\code\Mesh.cpp" />
     <ClCompile Include="..\..\code\Plane.cpp" />
     <ClCompile Include="..\..\code\Scene.cpp" />
+    <ClCompile Include="..\..\code\ScreenQuad.cpp" />
     <ClCompile Include="..\..\code\Screenshot.cpp" />
     <ClCompile Include="..\..\code\Shader.cpp" />
     <ClCompile Include="..\..\code\Window.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="..\..\code\Plane.hpp" />
     <ClInclude Include="..\..\code\Scene.hpp" />
     <ClInclude Include="..\..\code\SceneNode.hpp" />
+    <ClInclude Include="..\..\code\ScreenQuad.hpp" />
     <ClInclude Include="..\..\code\Screenshot.hpp" />
     <ClInclude Include="..\..\code\Shader.hpp" />
     <ClInclude Include="..\..\code\ShaderProgram.hpp" />

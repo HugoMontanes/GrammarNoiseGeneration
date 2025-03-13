@@ -19,6 +19,7 @@
 #include "SceneNode.hpp"
 #include "Camera.hpp"
 #include "Screenshot.hpp"
+#include "ScreenQuad.hpp"
 #include <unordered_map>
 
 namespace space
