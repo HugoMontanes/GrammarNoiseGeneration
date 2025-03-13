@@ -42,9 +42,10 @@ float fbm(vec2 p) {
     float value = 0.0;
     float amplitude = 0.5;
     float frequency = 1.0;
+	int octaves = 6;
     
     // Add multiple layers of noise
-    for(int i = 0; i < 6; i++) {
+    for(int i = 0; i < octaves; i++) {
         value += amplitude * perlin2D(p * frequency);
         frequency *= 2.0;
         amplitude *= 0.5;
@@ -59,7 +60,7 @@ void main() {
     vec2 noiseCoord = gl_FragCoord.xy * noise_scale / 100.0;
     
     // Add time for animation if desired
-    noiseCoord += time * 0.05;
+    noiseCoord += time * 0.1;
     
     // Generate base noise value
     float noise = fbm(noiseCoord);
