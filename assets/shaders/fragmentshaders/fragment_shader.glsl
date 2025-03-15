@@ -60,7 +60,7 @@ void main() {
     vec2 noiseCoord = gl_FragCoord.xy * noise_scale / 100.0;
     
     // Add time for animation if desired
-    noiseCoord += time * 0.1;
+    noiseCoord += time * 0.5;
     
     // Generate base noise value
     float noise = fbm(noiseCoord);

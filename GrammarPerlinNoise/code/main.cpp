@@ -7,8 +7,8 @@ using space::Window;
 int main(int, char* [])
 {
 
-    constexpr unsigned viewport_width = 1024;
-    constexpr unsigned viewport_height = 576;
+    constexpr unsigned viewport_width = 256;
+    constexpr unsigned viewport_height = 256;
 
     Window window("GrammarNoise", Window::Position::CENTERED, Window::Position::CENTERED, viewport_width, viewport_height, { 3,3 });
 
