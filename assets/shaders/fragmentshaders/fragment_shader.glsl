@@ -40,9 +40,9 @@ float perlin2D(vec2 p) {
 // FBM (Fractal Brownian Motion) for multiple octaves of noise
 float fbm(vec2 p) {
     float value = 0.0;
-    float amplitude = 0.5;
-    float frequency = 1.0;
-	int octaves = 6;
+    float amplitude = 0.75;
+    float frequency = 0.5;
+	int octaves = 4;
     
     // Add multiple layers of noise
     for(int i = 0; i < octaves; i++) {
@@ -66,7 +66,7 @@ void main() {
     float noise = fbm(noiseCoord);
     
     // Map noise from [-1,1] to [0,1] range with more contrast
-    float grayscale = clamp(noise * 0.8 + 0.5, 0.0, 1.0);
+    float grayscale = clamp(noise * 0.99 + 0.4, 0.0, 1.0);
     
     // Create grayscale color
     vec3 finalColor = vec3(grayscale);
