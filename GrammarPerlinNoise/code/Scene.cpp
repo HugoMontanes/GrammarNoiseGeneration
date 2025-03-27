@@ -27,7 +27,7 @@ namespace space
 		}
 
 		FragmentShader fragment_shader;
-		if (!fragment_shader.loadFromFile("../../../assets/shaders/fragmentshaders/fragment_shader.glsl"))
+		if (!fragment_shader.loadFromFile("../../../assets/shaders/fragmentshaders/fragment_shader_voronoi.glsl"))
 		{
 			throw std::runtime_error("Failed to load fragment shader.");
 		}

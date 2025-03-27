@@ -40,9 +40,9 @@ float perlin2D(vec2 p) {
 // FBM (Fractal Brownian Motion) for multiple octaves of noise
 float fbm(vec2 p) {
     float value = 0.0;
-    float amplitude = 0.75;
-    float frequency = 0.5;
-	int octaves = 4;
+    float amplitude = 1;
+    float frequency = 0.3;
+	int octaves = 2;
     
     // Add multiple layers of noise
     for(int i = 0; i < octaves; i++) {
