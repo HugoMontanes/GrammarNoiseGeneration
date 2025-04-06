@@ -44,7 +44,7 @@ namespace space
 
         // Create filename with sequential numbering
         std::ostringstream filename;
-        filename << outputPath << "image_" << std::setw(3) << std::setfill('0') << counter++;
+        filename << outputPath << "image_" << counter++;
 
         // Add appropriate file extension
         switch (format) {

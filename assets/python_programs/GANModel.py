@@ -441,13 +441,13 @@ def generate_texture(generator, parameters, noise_dim=100):
 if __name__ == "__main__":
     import os
     # Get the absolute path to the database_images directory
-    image_dir = os.path.abspath("assets/database_images/")
+    image_dir = os.path.abspath("C:/Users/hugom/Documents/GitHub/GrammarNoiseGeneration/assets/database_images")
 
     if not os.path.exists(image_dir):
         print(f"Error: Directory {image_dir} does not exist")
         exit(1)
 
-    metadata_file = os.path.abspath("assets/python_programs/tags.json")
+    metadata_file = os.path.abspath("C:/Users/hugom/Documents/GitHub/GrammarNoiseGeneration/assets/database_images/tags.json")
 
     if not os.path.exists(metadata_file):
         print(f"Error: Directory {metadata_file} does not exist")
@@ -458,10 +458,10 @@ if __name__ == "__main__":
     
     # Example: Analyze a new texture
     if discriminator is not None:
-        result = analyze_new_texture(discriminator, "image_001.png")
+        result = analyze_new_texture(discriminator, "image_1.png")
         
         # Find closest match
-        closest = find_closest_match(discriminator, "image_001.png", image_dir, metadata_file)
+        closest = find_closest_match(discriminator, "image_1.png", image_dir, metadata_file)
         
         # Generate a similar texture
         if generator is not None and result is not None:
