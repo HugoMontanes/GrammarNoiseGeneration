@@ -104,7 +104,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\libraries\sdl\include;..\..\..\libraries\glad\include;..\..\..\libraries\glm\include;..\..\..\libraries\stb\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\libraries\sdl\include;..\..\..\libraries\glad\include;..\..\..\libraries\glm\include;..\..\..\libraries\stb\include;..\..\..\libraries\rapidjson\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -121,7 +122,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\libraries\sdl\include;..\..\..\libraries\glad\include;..\..\..\libraries\glm\include;..\..\..\libraries\stb\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\libraries\sdl\include;..\..\..\libraries\glad\include;..\..\..\libraries\glm\include;..\..\..\libraries\stb\include;..\..\..\libraries\rapidjson\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,6 +142,7 @@
     <ClCompile Include="..\..\code\ScreenQuad.cpp" />
     <ClCompile Include="..\..\code\Screenshot.cpp" />
     <ClCompile Include="..\..\code\Shader.cpp" />
+    <ClCompile Include="..\..\code\ShaderParameterLogger.cpp" />
     <ClCompile Include="..\..\code\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +155,7 @@
     <ClInclude Include="..\..\code\ScreenQuad.hpp" />
     <ClInclude Include="..\..\code\Screenshot.hpp" />
     <ClInclude Include="..\..\code\Shader.hpp" />
+    <ClInclude Include="..\..\code\ShaderParameterLogger.hpp" />
     <ClInclude Include="..\..\code\ShaderProgram.hpp" />
     <ClInclude Include="..\..\code\VertexShader.hpp" />
     <ClInclude Include="..\..\code\Window.hpp" />

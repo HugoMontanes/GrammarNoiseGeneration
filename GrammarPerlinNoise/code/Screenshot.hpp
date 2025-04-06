@@ -35,6 +35,9 @@ namespace space
 
         bool captureScreenshot(unsigned int width, unsigned int height, ImageFormat format = ImageFormat::PNG);
 
+        // Add getter for the last image counter
+        int getLastImageCounter() const { return counter - 1; }
+
     private:
 
         bool saveImage(const std::string& filename, unsigned int width, unsigned int height, const std::vector<unsigned char>& pixels, ImageFormat format);

@@ -20,6 +20,8 @@ namespace space
 
 		screenshotExporter = std::make_unique<ScreenshotExporter>("../../../assets/database_images");
 
+		parameterLogger = std::make_unique<ShaderParameterLogger>("../../../assets/database_images/tags.json");
+
 		VertexShader vertex_shader;
 		if (!vertex_shader.loadFromFile("../../../assets/shaders/vertexshaders/vertex_shader.glsl"))
 		{
@@ -51,6 +53,12 @@ namespace space
 
 		noise_scale_id = glGetUniformLocation(shader_program->getProgramID(), "noise_scale");
 		time_id = glGetUniformLocation(shader_program->getProgramID(), "time");
+
+		frequency_id = glGetUniformLocation(shader_program->getProgramID(), "frequency");
+		amplitude_id = glGetUniformLocation(shader_program->getProgramID(), "amplitude");
+		octaves_id = glGetUniformLocation(shader_program->getProgramID(), "octaves");
+
+		
 
 		//Root node
 		root = std::make_shared<SceneNode>("root");
@@ -141,6 +149,10 @@ namespace space
 		float currentTime = SDL_GetTicks() / 1000.0f;
 		glUniform1f(time_id, currentTime);
 		glUniform1f(noise_scale_id, 1.0f); // Adjust this value to change noise scale
+
+		glUniform1f(frequency_id, currentFrequency);
+		glUniform1f(amplitude_id, currentAmplitude);
+		glUniform1i(octaves_id, currentOctaves);
 
 		// Render scene graph starting from root
 		renderNode(root, view_matrix);
@@ -291,7 +303,58 @@ namespace space
 	{
 		int width, height;
 		SDL_GetWindowSize(SDL_GL_GetCurrentWindow(), &width, &height);
-		return screenshotExporter->captureScreenshot(width, height, format);
+		bool result = screenshotExporter->captureScreenshot(width, height, format);
+
+		if (result)
+		{
+			//Get the filename from the screenshotExporter
+			std::string filename = "image_" + std::to_string(screenshotExporter->getLastImageCounter());
+
+			//Add file extension
+			switch (format)
+			{
+			case ScreenshotExporter::ImageFormat::PNG:
+				filename += ".png";
+				break;
+			case ScreenshotExporter::ImageFormat::JPG:
+				filename += ".jpg";
+				break;
+			}
+
+			//Create parameters map
+			std::map<std::string, float> parameters =
+			{
+				{"frequency", currentFrequency},
+				{"amplitude", currentAmplitude},
+				{"octaves", static_cast<float>(currentOctaves)}
+			};
+
+			//Create tags map(using vector of strings for flexibility)
+			std::map<std::string, std::string> tags =
+			{
+				{"0", "voronoi"}
+			};
+
+			//Log parameters to JSON
+			parameterLogger->logParameters(filename, tags, parameters);
+		}
+
+		return result;
+	}
+
+	void Scene::setFrequency(float value)
+	{
+		currentFrequency = value;
+	}
+
+	void Scene::setAmplitude(float value)
+	{
+		currentAmplitude = value;
+	}
+
+	void Scene::setOctaves(int value)
+	{
+		currentOctaves = value;
 	}
 }
 

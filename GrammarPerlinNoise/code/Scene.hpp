@@ -20,6 +20,7 @@
 #include "Camera.hpp"
 #include "Screenshot.hpp"
 #include "ScreenQuad.hpp"
+#include "ShaderParameterLogger.hpp"
 #include <unordered_map>
 
 namespace space
@@ -32,6 +33,7 @@ namespace space
         std::shared_ptr<SceneNode> root;
         std::shared_ptr<Camera> activeCamera;
         std::unique_ptr<ScreenshotExporter> screenshotExporter;
+        std::unique_ptr<ShaderParameterLogger> parameterLogger;
 
         float cameraSpeed = 10.0f;
         float cameraRotationSpeed = 2.0f;
@@ -46,7 +48,14 @@ namespace space
 
         GLint noise_scale_id = -1;
         GLint time_id = -1;
+        GLint frequency_id = -1;
+        GLint amplitude_id = -1;
+        GLint octaves_id = -1;
 
+        // Current shader parameter values
+        float currentFrequency = 2.5f;
+        float currentAmplitude = 0.4f;
+        int currentOctaves = 1;
 
     public:
         
@@ -63,5 +72,10 @@ namespace space
         void resetCameraRotation();
 
         bool takeScreenshot(ScreenshotExporter::ImageFormat format = ScreenshotExporter::ImageFormat::PNG);
+
+        // Shader parameter controls
+        void setFrequency(float value);
+        void setAmplitude(float value);
+        void setOctaves(int value);
     };
 }
