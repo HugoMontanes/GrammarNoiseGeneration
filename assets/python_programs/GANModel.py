@@ -63,34 +63,35 @@ def create_generator(latent_dim=100):
     Returns:
         tf.keras.Model: The generator model
     """
-    model = models.Sequential([
-        # Start with a dense layer
-        layers.Input(shape=(latent_dim + 3,)),  # Noise + conditional parameters
-        layers.Dense(16 * 16 * 256),
-        layers.BatchNormalization(),
-        layers.LeakyReLU(alpha=0.2),
-        layers.Reshape((16, 16, 256)),
-        
-        # Upsampling blocks
-        layers.Conv2DTranspose(256, 4, strides=2, padding='same'),
-        layers.BatchNormalization(),
-        layers.LeakyReLU(alpha=0.2),
-        
-        layers.Conv2DTranspose(128, 4, strides=2, padding='same'),
-        layers.BatchNormalization(),
-        layers.LeakyReLU(alpha=0.2),
-        
-        layers.Conv2DTranspose(64, 4, strides=2, padding='same'),
-        layers.BatchNormalization(),
-        layers.LeakyReLU(alpha=0.2),
-        
-        layers.Conv2DTranspose(32, 4, strides=2, padding='same'),
-        layers.BatchNormalization(),
-        layers.LeakyReLU(alpha=0.2),
-        
-        # Output layer
-        layers.Conv2D(1, 3, padding='same', activation='tanh')
-    ])
+    noise_input = layers.Input(shape=(latent_dim + 3,))  # Noise + conditional parameters
+    
+    x = layers.Dense(16 * 16 * 256)(noise_input)
+    x = layers.BatchNormalization()(x)
+    x = layers.LeakyReLU(alpha=0.2)(x)
+    x = layers.Reshape((16, 16, 256))(x)
+    
+    # Upsampling blocks
+    x = layers.Conv2DTranspose(256, 4, strides=2, padding='same')(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.LeakyReLU(alpha=0.2)(x)
+    
+    x = layers.Conv2DTranspose(128, 4, strides=2, padding='same')(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.LeakyReLU(alpha=0.2)(x)
+    
+    x = layers.Conv2DTranspose(64, 4, strides=2, padding='same')(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.LeakyReLU(alpha=0.2)(x)
+    
+    x = layers.Conv2DTranspose(32, 4, strides=2, padding='same')(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.LeakyReLU(alpha=0.2)(x)
+    
+    # Output layer
+    output = layers.Conv2D(1, 3, padding='same', activation='tanh')(x)
+    
+    # Create model
+    model = models.Model(noise_input, output)
     return model
 
 def load_and_preprocess_images(image_directory, metadata_file):
@@ -169,18 +170,20 @@ def create_gan(generator, discriminator):
     discriminator.trainable = False
     
     # GAN input (noise vector + parameters)
-    gan_input = layers.Input(shape=(100,))
-    param_input = layers.Input(shape=(3,))
-    generator_input = layers.Concatenate()([gan_input, param_input])
+    gan_noise_input = layers.Input(shape=(100,))
+    gan_param_input = layers.Input(shape=(3,))
+    
+    # Concatenate inputs for generator
+    combined_input = layers.Concatenate()([gan_noise_input, gan_param_input])
     
     # Generate image
-    generated_img = generator(generator_input)
+    generated_img = generator(combined_input)
     
-    # Discriminator determines if real/fake and predicts parameters
+    # Discriminator determines parameters from generated image
     gan_output = discriminator(generated_img)
     
     # Create and compile GAN
-    gan = models.Model([gan_input, param_input], gan_output)
+    gan = models.Model([gan_noise_input, gan_param_input], gan_output)
     gan.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.0002, beta_1=0.5),
                 loss='mse')
     
@@ -281,9 +284,107 @@ def train_texture_gan(image_directory, metadata_file, epochs=100, batch_size=32)
     discriminator.save('texture_discriminator_final.h5')
     generator.save('texture_generator.h5')
     
-    # Now implement GAN training (adversarial)
-    # This would be a more complex training loop
-    # ...
+    # Implement GAN training (adversarial)
+    # Set up training parameters
+    gan_epochs = 100
+    steps_per_epoch = len(x_train) // batch_size
+    
+    # Lists to store losses
+    d_losses = []
+    g_losses = []
+    
+    # Adversarial training loop
+    for epoch in range(gan_epochs):
+        d_loss_epoch = 0
+        g_loss_epoch = 0
+        
+        for step in range(steps_per_epoch):
+            # Select a random batch of images
+            idx = np.random.randint(0, x_train.shape[0], batch_size)
+            real_images = x_train[idx]
+            real_params = y_train_norm[idx]
+            
+            # Generate random noise
+            noise = np.random.normal(0, 1, (batch_size, 100))
+            
+            # Train discriminator
+            # First unfreeze discriminator
+            discriminator.trainable = True
+            
+            # Train on real images
+            d_loss_real = discriminator.train_on_batch(real_images, real_params)[0]
+            
+            # Generate fake images
+            gen_input = np.concatenate([noise, real_params], axis=1)
+            fake_images = generator.predict(gen_input)
+            
+            # Train on fake images
+            d_loss_fake = discriminator.train_on_batch(fake_images, real_params)[0]
+            
+            # Calculate total discriminator loss
+            d_loss = 0.5 * (d_loss_real + d_loss_fake)
+            d_loss_epoch += d_loss
+            
+            # Train generator
+            # Freeze discriminator when training generator
+            discriminator.trainable = False
+            
+            # Generate new noise
+            noise = np.random.normal(0, 1, (batch_size, 100))
+            
+            # Train generator to fool discriminator
+            g_loss = gan.train_on_batch([noise, real_params], real_params)
+            g_loss_epoch += g_loss
+        
+        # Calculate average losses for epoch
+        d_loss_epoch /= steps_per_epoch
+        g_loss_epoch /= steps_per_epoch
+        
+        # Store losses
+        d_losses.append(d_loss_epoch)
+        g_losses.append(g_loss_epoch)
+        
+        # Print progress
+        if epoch % 10 == 0:
+            print(f"Epoch {epoch}/{gan_epochs}, D Loss: {d_loss_epoch:.4f}, G Loss: {g_loss_epoch:.4f}")
+        
+        # Generate and save sample images
+        if epoch % 20 == 0:
+            # Generate sample images
+            sample_noise = np.random.normal(0, 1, (3, 100))
+            # Use the first 3 parameter sets from validation data
+            sample_params = y_val_norm[:3]
+            sample_gen_input = np.concatenate([sample_noise, sample_params], axis=1)
+            sample_images = generator.predict(sample_gen_input)
+            
+            # Save images
+            fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+            for i in range(3):
+                # Convert from [-1, 1] to [0, 1] range
+                img = (sample_images[i] + 1) / 2.0
+                axes[i].imshow(img.squeeze(), cmap='gray')
+                axes[i].axis('off')
+                # Denormalize parameters for display
+                params_real = sample_params[i] * param_range + param_min
+                axes[i].set_title(f"F:{params_real[0]:.2f}, A:{params_real[1]:.2f}, O:{int(params_real[2])}")
+            
+            plt.tight_layout()
+            plt.savefig(f'gan_samples_epoch_{epoch}.png')
+            plt.close()
+    
+    # Plot GAN training history
+    plt.figure(figsize=(10, 5))
+    plt.plot(d_losses, label='Discriminator Loss')
+    plt.plot(g_losses, label='Generator Loss')
+    plt.title('GAN Training')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.savefig('gan_training_history.png')
+    
+    # Save final models
+    discriminator.save('texture_discriminator_gan.h5')
+    generator.save('texture_generator_gan.h5')
     
     return discriminator, generator, discriminator_history
 
@@ -458,10 +559,10 @@ if __name__ == "__main__":
     
     # Example: Analyze a new texture
     if discriminator is not None:
-        result = analyze_new_texture(discriminator, "image_1.png")
+        result = analyze_new_texture(discriminator, "C:/Users/hugom/Documents/GitHub/GrammarNoiseGeneration/assets/database_images/image_1.png")
         
         # Find closest match
-        closest = find_closest_match(discriminator, "image_1.png", image_dir, metadata_file)
+        closest = find_closest_match(discriminator, "C:/Users/hugom/Documents/GitHub/GrammarNoiseGeneration/assets/database_images/image_1.png", image_dir, metadata_file)
         
         # Generate a similar texture
         if generator is not None and result is not None:
