@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from tensorflow.keras import layers, models, callbacks
+from tensorflow.keras import layers, models, callbacks # type: ignore
 import os
 from PIL import Image
 import json
@@ -189,9 +189,9 @@ def create_gan(generator, discriminator):
     
     return gan
 
-def train_texture_gan(image_directory, metadata_file, epochs=100, batch_size=32):
+def train_discriminator_only(image_directory, metadata_file, epochs=100, batch_size=32):
     """
-    Train a GAN for texture analysis and generation.
+    Train only the discriminator for texture analysis.
     
     Args:
         image_directory (str): Directory containing texture images
@@ -200,13 +200,13 @@ def train_texture_gan(image_directory, metadata_file, epochs=100, batch_size=32)
         batch_size (int): Batch size for training
         
     Returns:
-        tuple: (discriminator, generator, history) - Trained models and training history
+        tuple: (discriminator, history) - Trained model and training history
     """
     # Load dataset
     images, parameters = load_and_preprocess_images(image_directory, metadata_file)
     if images is None or len(images) == 0:
         print("No valid images found. Exiting.")
-        return None, None, None
+        return None, None
     
     # Print parameter ranges before normalization
     print("Parameter ranges before normalization:")
@@ -246,14 +246,11 @@ def train_texture_gan(image_directory, metadata_file, epochs=100, batch_size=32)
     with open('parameter_normalization.json', 'w') as f:
         json.dump(norm_params, f)
     
-    # Create models
+    # Create discriminator model
     discriminator = create_discriminator(output_dims=3)
     discriminator.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.0002, beta_1=0.5),
                           loss='mse',
                           metrics=['mae'])
-    
-    generator = create_generator(latent_dim=100)
-    gan = create_gan(generator, discriminator)
     
     # Create callbacks
     checkpoint = callbacks.ModelCheckpoint(
@@ -267,7 +264,7 @@ def train_texture_gan(image_directory, metadata_file, epochs=100, batch_size=32)
         restore_best_weights=True
     )
     
-    # Train discriminator first on real data
+    # Train discriminator on real data
     discriminator_history = discriminator.fit(
         x_train, y_train_norm,
         validation_data=(x_val, y_val_norm),
@@ -295,130 +292,17 @@ def train_texture_gan(image_directory, metadata_file, epochs=100, batch_size=32)
     plt.legend(['Train', 'Validation'], loc='upper right')
     
     plt.tight_layout()
-    plt.savefig('training_history.png')
+    plt.savefig('discriminator_training_history.png')
+
+    save_dir = "C:/Users/hugom/Documents/GitHub/GrammarNoiseGeneration/assets/models"
     
-    # Save models
-    discriminator.save('texture_discriminator_final.h5')
-    generator.save('texture_generator.h5')
+    # Save the discriminator model in both TensorFlow's format and for ONNX conversion
+    discriminator.save(os.path.join(save_dir,'texture_discriminator_for_onnx.h5'))
     
-    # Implement GAN training (adversarial)
-    # Set up training parameters
-    gan_epochs = 100
-    steps_per_epoch = len(x_train) // batch_size
+    # Also save model in TensorFlow's SavedModel format which can be better for ONNX conversion
+    tf.saved_model.save(discriminator, os.path.join(save_dir, 'texture_discriminator_savedmodel'))
     
-    # Lists to store losses
-    d_losses = []
-    g_losses = []
-    
-    # Adversarial training loop
-    for epoch in range(gan_epochs):
-        d_loss_epoch = 0
-        g_loss_epoch = 0
-        
-        for step in range(steps_per_epoch):
-            # Select a random batch of images
-            idx = np.random.randint(0, x_train.shape[0], batch_size)
-            real_images = x_train[idx]
-            real_params = y_train_norm[idx]
-            
-            # Check for NaN values in parameters
-            if np.isnan(real_params).any():
-                print("Warning: NaN values detected in parameters batch. Skipping batch.")
-                continue
-            
-            # Generate random noise
-            noise = np.random.normal(0, 1, (batch_size, 100))
-            
-            # Train discriminator
-            # First unfreeze discriminator
-            discriminator.trainable = True
-            
-            # Train on real images
-            d_loss_real = discriminator.train_on_batch(real_images, real_params)[0]
-            
-            # Generate fake images
-            gen_input = np.concatenate([noise, real_params], axis=1)
-            fake_images = generator.predict(gen_input)
-            
-            # Train on fake images
-            d_loss_fake = discriminator.train_on_batch(fake_images, real_params)[0]
-            
-            # Calculate total discriminator loss
-            d_loss = 0.5 * (d_loss_real + d_loss_fake)
-            d_loss_epoch += d_loss
-            
-            # Train generator
-            # Freeze discriminator when training generator
-            discriminator.trainable = False
-            
-            # Generate new noise
-            noise = np.random.normal(0, 1, (batch_size, 100))
-            
-            # Train generator to fool discriminator
-            g_loss = gan.train_on_batch([noise, real_params], real_params)
-            g_loss_epoch += g_loss
-        
-        # Calculate average losses for epoch
-        d_loss_epoch /= steps_per_epoch
-        g_loss_epoch /= steps_per_epoch
-        
-        # Store losses
-        d_losses.append(d_loss_epoch)
-        g_losses.append(g_loss_epoch)
-        
-        # Print progress
-        if epoch % 10 == 0:
-            print(f"Epoch {epoch}/{gan_epochs}, D Loss: {d_loss_epoch:.4f}, G Loss: {g_loss_epoch:.4f}")
-        
-        # Generate and save sample images
-        if epoch % 20 == 0:
-            # Generate sample images
-            sample_noise = np.random.normal(0, 1, (3, 100))
-            # Use the first 3 parameter sets from validation data
-            sample_params = y_val_norm[:3]
-            
-            # Check for NaN values
-            sample_params = np.nan_to_num(sample_params)
-            
-            sample_gen_input = np.concatenate([sample_noise, sample_params], axis=1)
-            sample_images = generator.predict(sample_gen_input)
-            
-            # Save images
-            fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-            for i in range(3):
-                # Convert from [-1, 1] to [0, 1] range
-                img = (sample_images[i] + 1) / 2.0
-                axes[i].imshow(img.squeeze(), cmap='gray')
-                axes[i].axis('off')
-                # Denormalize parameters for display
-                params_real = sample_params[i] * param_range + param_min
-                
-                # Handle potential NaN values safely
-                freq = float(params_real[0]) if not np.isnan(params_real[0]) else 0.0
-                amp = float(params_real[1]) if not np.isnan(params_real[1]) else 0.0
-                oct = int(round(float(params_real[2]))) if not np.isnan(params_real[2]) else 0
-                
-                axes[i].set_title(f"F:{freq:.2f}, A:{amp:.2f}, O:{oct}")
-            
-            plt.tight_layout()
-            plt.savefig(f'gan_samples_epoch_{epoch}.png')
-            plt.close()
-    
-    # Plot GAN training history
-    plt.figure(figsize=(10, 5))
-    plt.plot(d_losses, label='Discriminator Loss')
-    plt.plot(g_losses, label='Generator Loss')
-    plt.title('GAN Training')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.legend()
-    plt.savefig('gan_training_history.png')
-    
-    # Save final models
-    discriminator.save('texture_discriminator_gan.h5')
-    generator.save('texture_generator_gan.h5')
-    
-    return discriminator, generator, discriminator_history
+    return discriminator, discriminator_history
 
 def analyze_new_texture(model, image_path):
     """
@@ -529,47 +413,6 @@ def find_closest_match(model, new_image_path, image_directory, metadata_file):
         print(f"Error finding closest match: {str(e)}")
         return None
 
-def generate_texture(generator, parameters, noise_dim=100):
-    """
-    Generate a texture with specific parameters.
-    
-    Args:
-        generator: Trained generator model
-        parameters (dict): Parameters for the texture
-        noise_dim (int): Dimension of the noise vector
-        
-    Returns:
-        numpy.ndarray: Generated texture image
-    """
-    # Create noise vector
-    noise = np.random.normal(0, 1, (1, noise_dim))
-    
-    # Create parameter vector
-    param_vector = np.array([[
-        parameters['frequency'],
-        parameters['amplitude'],
-        parameters['octaves']
-    ]])
-    
-    # Load normalization parameters
-    with open('parameter_normalization.json', 'r') as f:
-        norm_params = json.load(f)
-    
-    param_min = np.array(norm_params['min'])
-    param_max = np.array(norm_params['max'])
-    param_range = param_max - param_min
-    
-    # Normalize parameters
-    param_vector_norm = (param_vector - param_min) / param_range
-    
-    # Generate image
-    generated_image = generator.predict([noise, param_vector_norm])[0]
-    
-    # Convert from [-1, 1] to [0, 1] range
-    generated_image = (generated_image + 1) / 2.0
-    
-    return generated_image
-
 # Main execution
 if __name__ == "__main__":
     import os
@@ -587,7 +430,7 @@ if __name__ == "__main__":
         exit(1)
     
     # Train model
-    discriminator, generator, history = train_texture_gan(image_dir, metadata_file, epochs=50)
+    discriminator, history = train_discriminator_only(image_dir, metadata_file, epochs=50)
     
     # Example: Analyze a new texture
     if discriminator is not None:
@@ -595,11 +438,3 @@ if __name__ == "__main__":
         
         # Find closest match
         closest = find_closest_match(discriminator, "C:/Users/hugom/Documents/GitHub/GrammarNoiseGeneration/assets/database_images/image_1.png", image_dir, metadata_file)
-        
-        # Generate a similar texture
-        if generator is not None and result is not None:
-            generated = generate_texture(generator, result)
-            
-            # Save generated image
-            generated_img = (generated * 255).astype(np.uint8).squeeze()
-            Image.fromarray(generated_img).save("generated_texture.png")
