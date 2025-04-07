@@ -140,9 +140,9 @@ def load_and_preprocess_images(image_directory, metadata_file):
                 # Get parameters
                 param = metadata[filename]['parameters']
                 param_vector = [
-                    param['frequency'],
-                    param['amplitude'],
-                    param['octaves']
+                    float(param['frequency']),  # Ensure float conversion
+                    float(param['amplitude']),
+                    float(param['octaves'])
                 ]
 
                 images.append(image_array)
@@ -208,23 +208,40 @@ def train_texture_gan(image_directory, metadata_file, epochs=100, batch_size=32)
         print("No valid images found. Exiting.")
         return None, None, None
     
+    # Print parameter ranges before normalization
+    print("Parameter ranges before normalization:")
+    print(f"Min: {np.min(parameters, axis=0)}")
+    print(f"Max: {np.max(parameters, axis=0)}")
+    
     # Split dataset
     x_train, x_val, y_train, y_val = train_test_split(
         images, parameters, test_size=0.2, random_state=42
     )
     
-    # Normalize parameters for model training
+    # Normalize parameters for model training - WITH SAFETY CHECKS
     param_min = np.min(parameters, axis=0)
     param_max = np.max(parameters, axis=0)
     param_range = param_max - param_min
     
+    # Add small epsilon to avoid division by zero
+    epsilon = 1e-10
+    param_range = np.where(param_range < epsilon, epsilon, param_range)
+    
     y_train_norm = (y_train - param_min) / param_range
     y_val_norm = (y_val - param_min) / param_range
+    
+    # Check for NaN values after normalization
+    if np.isnan(y_train_norm).any() or np.isnan(y_val_norm).any():
+        print("Warning: NaN values detected after normalization!")
+        print("Non-finite values will be replaced with zeros.")
+        y_train_norm = np.nan_to_num(y_train_norm)
+        y_val_norm = np.nan_to_num(y_val_norm)
     
     # Save normalization parameters for later use
     norm_params = {
         'min': param_min.tolist(),
-        'max': param_max.tolist()
+        'max': param_max.tolist(),
+        'range': param_range.tolist()  # Added range for safety
     }
     with open('parameter_normalization.json', 'w') as f:
         json.dump(norm_params, f)
@@ -304,6 +321,11 @@ def train_texture_gan(image_directory, metadata_file, epochs=100, batch_size=32)
             real_images = x_train[idx]
             real_params = y_train_norm[idx]
             
+            # Check for NaN values in parameters
+            if np.isnan(real_params).any():
+                print("Warning: NaN values detected in parameters batch. Skipping batch.")
+                continue
+            
             # Generate random noise
             noise = np.random.normal(0, 1, (batch_size, 100))
             
@@ -354,6 +376,10 @@ def train_texture_gan(image_directory, metadata_file, epochs=100, batch_size=32)
             sample_noise = np.random.normal(0, 1, (3, 100))
             # Use the first 3 parameter sets from validation data
             sample_params = y_val_norm[:3]
+            
+            # Check for NaN values
+            sample_params = np.nan_to_num(sample_params)
+            
             sample_gen_input = np.concatenate([sample_noise, sample_params], axis=1)
             sample_images = generator.predict(sample_gen_input)
             
@@ -366,7 +392,13 @@ def train_texture_gan(image_directory, metadata_file, epochs=100, batch_size=32)
                 axes[i].axis('off')
                 # Denormalize parameters for display
                 params_real = sample_params[i] * param_range + param_min
-                axes[i].set_title(f"F:{params_real[0]:.2f}, A:{params_real[1]:.2f}, O:{int(params_real[2])}")
+                
+                # Handle potential NaN values safely
+                freq = float(params_real[0]) if not np.isnan(params_real[0]) else 0.0
+                amp = float(params_real[1]) if not np.isnan(params_real[1]) else 0.0
+                oct = int(round(float(params_real[2]))) if not np.isnan(params_real[2]) else 0
+                
+                axes[i].set_title(f"F:{freq:.2f}, A:{amp:.2f}, O:{oct}")
             
             plt.tight_layout()
             plt.savefig(f'gan_samples_epoch_{epoch}.png')
