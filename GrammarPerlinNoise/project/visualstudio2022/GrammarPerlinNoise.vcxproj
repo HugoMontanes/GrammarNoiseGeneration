@@ -135,8 +135,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\code\GeneticAlgorithm.cpp" />
     <ClCompile Include="..\..\code\main.cpp" />
     <ClCompile Include="..\..\code\Mesh.cpp" />
+    <ClCompile Include="..\..\code\ONNXModel.cpp" />
     <ClCompile Include="..\..\code\Plane.cpp" />
     <ClCompile Include="..\..\code\Scene.cpp" />
     <ClCompile Include="..\..\code\ScreenQuad.cpp" />
@@ -148,7 +150,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\code\Camera.hpp" />
     <ClInclude Include="..\..\code\FragmentShader.hpp" />
+    <ClInclude Include="..\..\code\GeneticAlgorithm.hpp" />
     <ClInclude Include="..\..\code\Mesh.hpp" />
+    <ClInclude Include="..\..\code\ONNXModel.hpp" />
     <ClInclude Include="..\..\code\Plane.hpp" />
     <ClInclude Include="..\..\code\Scene.hpp" />
     <ClInclude Include="..\..\code\SceneNode.hpp" />
