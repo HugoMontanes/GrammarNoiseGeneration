@@ -55,10 +55,14 @@ namespace space
 
         VoronoiParameters bestSolution;
 
-        VoronoiParameters generateRandomIndividual();
 
         using FitnessFunction = std::function<float(const VoronoiParameters&, const std::string& screenshotPath)>;
         FitnessFunction fitnessEvaluator;
+
+        VoronoiParameters generateRandomIndividual();
+        VoronoiParameters tournamentSelection(size_t tournamentSize);
+        std::pair<VoronoiParameters, VoronoiParameters> crossover(const VoronoiParameters& parent1, const VoronoiParameters& parent2);
+        void mutate(VoronoiParameters& individual);
 
     public:
 
