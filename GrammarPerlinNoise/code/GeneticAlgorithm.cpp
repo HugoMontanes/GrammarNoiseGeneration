@@ -97,14 +97,28 @@ namespace space
     }
 
     // Evaluate fitness for all individuals in the population
-    void GeneticAlgorithm::evaluatePopulation() 
-    {
+    void GeneticAlgorithm::evaluatePopulation() {
+        // First, render and capture screenshots for all individuals on the main thread
+        for (auto& individual : population) {
+            if (scenePtr) {
+                scenePtr->setFrequency(individual.frequency);
+                scenePtr->setAmplitude(individual.amplitude);
+                scenePtr->setOctaves(individual.octaves);
 
-        // Define number of threads based on hardware
+                scenePtr->render();
+                scenePtr->takeScreenshot();
+
+                // Store the screenshot path for this individual
+                int lastImageCounter = scenePtr->getScreenshotExporter()->getLastImageCounter();
+                individual.screenshotPath = "../../../assets/generated_images/image_" +
+                    std::to_string(lastImageCounter) + ".png";
+            }
+        }
+
+        // Now evaluate fitness in parallel (without rendering)
         unsigned int numThreads = std::thread::hardware_concurrency();
-        numThreads = numThreads > 0 ? numThreads : 4; // Default to 4 if detection fails
+        numThreads = numThreads > 0 ? numThreads : 4;
 
-        // Split population into chunks for parallel processing
         std::vector<std::thread> threads;
         size_t chunkSize = population.size() / numThreads;
 
@@ -114,12 +128,13 @@ namespace space
 
             threads.push_back(std::thread([this, start, end]() {
                 for (size_t i = start; i < end; ++i) {
-                    evaluateIndividual(population[i]);
+                    // Only evaluate fitness, no rendering or screenshot taking
+                    population[i].fitness = fitnessEvaluator(population[i], population[i].screenshotPath);
                 }
                 }));
         }
 
-        // Join all threads
+        // Join threads
         for (auto& thread : threads) {
             thread.join();
         }

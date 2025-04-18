@@ -19,6 +19,7 @@ namespace space
         float amplitude;
         int octaves;
         float fitness;
+        std::string screenshotPath;
 
         VoronoiParameters(float freq = 2.5f, float amp = 0.4f, int oct = 1)
             : frequency(freq), amplitude(amp), octaves(oct), fitness(0.0f){}
