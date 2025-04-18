@@ -7,10 +7,9 @@
 #include <memory>
 #include <string>
 #include <functional>
+#include <mutex>
 #include "Scene.hpp"
-
-//Forward declaration ONNXModel
-class ONNXModel;
+#include "ONNXModel.hpp"
 
 namespace space
 {
@@ -60,12 +59,38 @@ namespace space
         FitnessFunction fitnessEvaluator;
 
         VoronoiParameters generateRandomIndividual();
+        void evaluateIndividual(VoronoiParameters& individual);
         VoronoiParameters tournamentSelection(size_t tournamentSize);
         std::pair<VoronoiParameters, VoronoiParameters> crossover(const VoronoiParameters& parent1, const VoronoiParameters& parent2);
-        void mutate(VoronoiParameters& individual);
+        void mutate(VoronoiParameters& individual, float adaptiveMutationRate = 0.0f);
+
+        std::mutex sceneMutex;
 
     public:
 
+        GeneticAlgorithm
+        (
+            Scene* scene, 
+            size_t popSize = 50, 
+            float crossover = 0.8f, 
+            float mutation = 0.2f, 
+            int maxGen = 20, const std::string& onnxModelPath = "../../../assets/models/texture_discriminator.onnx"
+        );
 
+        //Core methods
+        void initializePopulation();
+        void evaluatePopulation();
+        void evolvePopulation();
+        void run();
+        void stop();
+
+        //Getters and Setters
+        VoronoiParameters getBestSolution() const;
+        int getCurrentGeneration() const;
+		void setParameterConstraints(
+			float minFreq, float maxFreq,
+			float minAmp, float maxAmp,
+			int minOct, int maxOct
+		);
     };
 }

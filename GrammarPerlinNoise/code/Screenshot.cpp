@@ -98,19 +98,24 @@ namespace space
     }
 
     
-    bool ScreenshotExporter::ensureDirectoryExists(const std::string& path) {
-        // Make sure path ends with a slash
-        std::string dirPath = path;
-        if (!dirPath.empty() && dirPath.back() != '/' && dirPath.back() != '\\') {
-            dirPath += '/';
-        }
-
-        // Try to create the directory
+    bool ScreenshotExporter::ensureDirectoryExists(const std::string& dirPath) {
+    // Create directories recursively
+    std::string currentPath;
+    for (char c : dirPath) {
+        currentPath += c;
+        if ((c == '/' || c == '\\') && !currentPath.empty()) {
 #ifdef _WIN32
-        return _mkdir(dirPath.c_str()) == 0 || errno == EEXIST;
+            if (_mkdir(currentPath.c_str()) != 0 && errno != EEXIST) {
+                return false;
+            }
 #else
-        return mkdir(dirPath.c_str(), 0777) == 0 || errno == EEXIST;
+            if (mkdir(currentPath.c_str(), 0777) != 0 && errno != EEXIST) {
+                return false;
+            }
 #endif
+        }
     }
+    return true;
+}
 }
 

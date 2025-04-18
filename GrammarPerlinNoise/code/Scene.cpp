@@ -301,6 +301,7 @@ namespace space
 	}
 	bool Scene::takeScreenshot(ScreenshotExporter::ImageFormat format)
 	{
+
 		int width, height;
 		SDL_GetWindowSize(SDL_GL_GetCurrentWindow(), &width, &height);
 		bool result = screenshotExporter->captureScreenshot(width, height, format);
@@ -340,21 +341,6 @@ namespace space
 		}
 
 		return result;
-	}
-
-	void Scene::setFrequency(float value)
-	{
-		currentFrequency = value;
-	}
-
-	void Scene::setAmplitude(float value)
-	{
-		currentAmplitude = value;
-	}
-
-	void Scene::setOctaves(int value)
-	{
-		currentOctaves = value;
 	}
 }
 

@@ -32,7 +32,7 @@ namespace space
         std::unique_ptr<ShaderProgram> shader_program;
         std::shared_ptr<SceneNode> root;
         std::shared_ptr<Camera> activeCamera;
-        std::unique_ptr<ScreenshotExporter> screenshotExporter;
+        std::shared_ptr<ScreenshotExporter> screenshotExporter;
         std::unique_ptr<ShaderParameterLogger> parameterLogger;
 
         float cameraSpeed = 10.0f;
@@ -74,8 +74,27 @@ namespace space
         bool takeScreenshot(ScreenshotExporter::ImageFormat format = ScreenshotExporter::ImageFormat::PNG);
 
         // Shader parameter controls
-        void setFrequency(float value);
-        void setAmplitude(float value);
-        void setOctaves(int value);
+        void setFrequency(float value)
+        {
+            currentFrequency = value;
+        }
+        void setAmplitude(float value)
+        {
+            currentAmplitude = value;
+        }
+        void setOctaves(int value)
+        {
+            currentOctaves = value;
+        }
+
+        std::shared_ptr<ScreenshotExporter> getScreenshotExporter()
+        {
+            return screenshotExporter;
+        }
+
+        void configureScreenshotPath(const std::string& path)
+        {
+            screenshotExporter = std::make_shared<ScreenshotExporter>(path);
+        }
     };
 }

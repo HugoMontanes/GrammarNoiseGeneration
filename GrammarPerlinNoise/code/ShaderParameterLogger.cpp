@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <vector>
 #include "istreamwrapper.h"
 #include "ostreamwrapper.h"
 #include "writer.h"
@@ -33,9 +34,9 @@ namespace space
 			std::cerr << "Error opening JSON file: " << jsonFilePath << std::endl;
 			return false;
 		}
-
-		char readBuffer[65536];
-		rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
+		
+		std::vector<char> readBuffer(65536);
+		rapidjson::FileReadStream is(fp, readBuffer.data(), readBuffer.size());
 
 		document.ParseStream(is);
 		fclose(fp);
@@ -113,8 +114,8 @@ namespace space
 			return false;
 		}
 
-		char writeBuffer[65536];
-		rapidjson::FileWriteStream os(fp, writeBuffer, sizeof(writeBuffer));
+		std::vector<char> writeBuffer(65536);
+		rapidjson::FileWriteStream os(fp, writeBuffer.data(), writeBuffer.size());
 
 
 		//Use PrettyWriter for readable formatting

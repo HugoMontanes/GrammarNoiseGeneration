@@ -23,7 +23,6 @@ namespace space
     private:
         int counter = 1;
         std::string outputPath = "./";
-
     public:
         enum class ImageFormat
         {
@@ -37,6 +36,7 @@ namespace space
 
         // Add getter for the last image counter
         int getLastImageCounter() const { return counter - 1; }
+
 
     private:
 
