@@ -7,26 +7,27 @@
 using space::Window;
 
 int main(int, char* []) {
-    constexpr unsigned viewport_width = 256;
-    constexpr unsigned viewport_height = 256;
+    constexpr unsigned viewport_width = 2048;
+    constexpr unsigned viewport_height = 2048;
 
     Window window("GrammarNoise", Window::Position::CENTERED, Window::Position::CENTERED,
         viewport_width, viewport_height, { 3,3 });
 
     space::Scene scene(viewport_width, viewport_height);
 
-    // Create and run the genetic algorithm
-    space::GeneticAlgorithm ga(&scene, 50, 0.8f, 0.2f, 20);
-
-    scene.configureScreenshotPath("../../../assets/generated_images");
-
-    // Set parameter constraints
+    // Create GA but don't run it automatically
+    space::GeneticAlgorithm ga(&scene, 25, 0.8f, 0.2f, 10);
+    scene.configureScreenshotPath("../../../assets/database_images");
     ga.setParameterConstraints(1.0f, 10.0f, 0.1f, 1.0f, 1, 5);
 
-    // Run optimization in a separate thread
-    std::thread gaThread([&ga]() {
-        ga.run();
-        });
+    // GA control variables
+    bool gaRunning = false;
+    bool gaInitialized = false;
+    std::thread gaThread;
+
+    // Add a mode variable for UI
+    enum class Mode { MANUAL, GENETIC_ALGORITHM };
+    Mode currentMode = Mode::MANUAL;
 
     bool running = true;
     SDL_Event event;
@@ -39,8 +40,10 @@ int main(int, char* []) {
     std::cout << "Controls:" << std::endl;
     std::cout << "Z - Take screenshot" << std::endl;
     std::cout << "G - Start/Stop genetic algorithm" << std::endl;
-
-    bool gaRunning = true;
+    std::cout << "B - Apply best solution from GA" << std::endl;
+    std::cout << "Arrow keys - Manual frequency adjustment (when GA inactive)" << std::endl;
+    std::cout << "Shift+Arrow keys - Manual amplitude adjustment" << std::endl;
+    std::cout << "Ctrl+Arrow keys - Manual octaves adjustment" << std::endl;
 
     while (running) {
         while (SDL_PollEvent(&event)) {
@@ -54,26 +57,35 @@ int main(int, char* []) {
                 }
             }
             else if (event.type == SDL_KEYDOWN) {
-                // Add a dedicated key for screenshots
-                if (event.key.keysym.scancode == SDL_SCANCODE_P) {
+                // Screenshot key
+                if (event.key.keysym.scancode == SDL_SCANCODE_Z) {
                     scene.takeScreenshot(space::ScreenshotExporter::ImageFormat::PNG);
                 }
-                // Toggle GA on/off
+
+                // Toggle GA on/off with improved state handling
                 if (event.key.keysym.scancode == SDL_SCANCODE_G) {
-                    if (gaRunning) {
+                    if (currentMode == Mode::GENETIC_ALGORITHM && gaRunning) {
+                        // Stop GA
                         ga.stop();
+                        if (gaThread.joinable()) {
+                            gaThread.join();
+                        }
                         gaRunning = false;
                         std::cout << "Genetic algorithm stopped." << std::endl;
                     }
                     else {
+                        // Start or resume GA
+                        currentMode = Mode::GENETIC_ALGORITHM;
+                        gaRunning = true;
+                        if (gaThread.joinable()) gaThread.join(); // Clean up any existing thread
                         gaThread = std::thread([&ga]() {
                             ga.run();
                             });
-                        gaRunning = true;
                         std::cout << "Genetic algorithm started." << std::endl;
                     }
                 }
-                // Apply current best solution
+
+                // Apply best solution
                 if (event.key.keysym.scancode == SDL_SCANCODE_B) {
                     auto best = ga.getBestSolution();
                     scene.setFrequency(best.frequency);
@@ -81,6 +93,62 @@ int main(int, char* []) {
                     scene.setOctaves(best.octaves);
                     std::cout << "Applied best solution: f=" << best.frequency
                         << ", a=" << best.amplitude << ", o=" << best.octaves << std::endl;
+                }
+
+                // Manual parameter adjustments (only when GA not running)
+                if (currentMode == Mode::MANUAL || !gaRunning) {
+                    // Get current parameters
+                    float freq = scene.getFrequency();
+                    float amp = scene.getAmplitude();
+                    int oct = scene.getOctaves();
+
+                    // Check for keyboard modifiers
+                    const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
+                    bool shiftDown = keyboardState[SDL_SCANCODE_LSHIFT] || keyboardState[SDL_SCANCODE_RSHIFT];
+                    bool ctrlDown = keyboardState[SDL_SCANCODE_LCTRL] || keyboardState[SDL_SCANCODE_RCTRL];
+
+                    // Frequency adjustment (arrow keys)
+                    if (!shiftDown && !ctrlDown) {
+                        if (event.key.keysym.scancode == SDL_SCANCODE_UP) {
+                            scene.setFrequency(freq + 0.1f);
+                            std::cout << "Frequency: " << scene.getFrequency() << std::endl;
+                        }
+                        else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN) {
+                            scene.setFrequency(freq - 0.1f);
+                            std::cout << "Frequency: " << scene.getFrequency() << std::endl;
+                        }
+                    }
+
+                    // Amplitude adjustment (shift + arrow keys)
+                    if (shiftDown) {
+                        if (event.key.keysym.scancode == SDL_SCANCODE_UP) {
+                            scene.setAmplitude(amp + 0.05f);
+                            std::cout << "Amplitude: " << scene.getAmplitude() << std::endl;
+                        }
+                        else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN) {
+                            scene.setAmplitude(amp - 0.05f);
+                            std::cout << "Amplitude: " << scene.getAmplitude() << std::endl;
+                        }
+                    }
+
+                    // Octaves adjustment (ctrl + arrow keys)
+                    if (ctrlDown) {
+                        if (event.key.keysym.scancode == SDL_SCANCODE_UP) {
+                            scene.setOctaves(oct + 1);
+                            std::cout << "Octaves: " << scene.getOctaves() << std::endl;
+                        }
+                        else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN) {
+                            scene.setOctaves(oct - 1);
+                            std::cout << "Octaves: " << scene.getOctaves() << std::endl;
+                        }
+                    }
+
+                    // Switch to manual mode if any parameter was changed
+                    if (freq != scene.getFrequency() ||
+                        amp != scene.getAmplitude() ||
+                        oct != scene.getOctaves()) {
+                        currentMode = Mode::MANUAL;
+                    }
                 }
             }
         }
@@ -94,14 +162,11 @@ int main(int, char* []) {
         window.swap_buffers();
     }
 
-    // Wait for GA thread to finish
+    // Clean shutdown
+    ga.stop();
     if (gaThread.joinable()) {
         gaThread.join();
     }
 
     return 0;
 }
-
-
-
-

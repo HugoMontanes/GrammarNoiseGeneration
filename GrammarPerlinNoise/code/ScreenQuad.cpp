@@ -25,10 +25,10 @@ namespace space
 
         colors =
         {
-            glm::vec3(1.0f, 1.0f, 1.0f),  // bottom left
-            glm::vec3(1.0f, 1.0f, 1.0f),  // bottom right
-            glm::vec3(1.0f, 1.0f, 1.0f),  // top right
-            glm::vec3(1.0f, 1.0f, 1.0f)   // top left
+            glm::vec4(1.0f, 1.0f, 1.0f, 0.0f),  // bottom left
+            glm::vec4(1.0f, 1.0f, 1.0f, 0.0f),  // bottom right
+            glm::vec4(1.0f, 1.0f, 1.0f, 0.0f),  // top right
+            glm::vec4(1.0f, 1.0f, 1.0f, 0.0f)   // top left
         };
 
         indices =

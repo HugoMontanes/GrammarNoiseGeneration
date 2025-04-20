@@ -68,24 +68,16 @@ namespace space
         std::shared_ptr<SceneNode> createNode(const std::string& name, std::shared_ptr<SceneNode> parent = nullptr);
         std::shared_ptr<SceneNode> findNode(const std::string& name, const std::shared_ptr<SceneNode>& startNode);
         void handleKeyboard(const Uint8* keyboardState);
-        void updateCamera(float deltaTime);
-        void resetCameraRotation();
 
         bool takeScreenshot(ScreenshotExporter::ImageFormat format = ScreenshotExporter::ImageFormat::PNG);
 
         // Shader parameter controls
-        void setFrequency(float value)
-        {
-            currentFrequency = value;
-        }
-        void setAmplitude(float value)
-        {
-            currentAmplitude = value;
-        }
-        void setOctaves(int value)
-        {
-            currentOctaves = value;
-        }
+        void setFrequency(float value) {currentFrequency = value;}
+        void setAmplitude(float value) {currentAmplitude = value;}
+        void setOctaves(int value) {currentOctaves = value;}
+        float getFrequency() const { return currentFrequency; }
+        float getAmplitude() const { return currentAmplitude; }
+        int getOctaves() const { return currentOctaves; }
 
         std::shared_ptr<ScreenshotExporter> getScreenshotExporter()
         {

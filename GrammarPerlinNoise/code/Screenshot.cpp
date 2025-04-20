@@ -29,11 +29,11 @@ namespace space
         }
 
         // Allocate memory for the pixel data (RGB format)
-        std::vector<unsigned char> pixels(width * height * 3);
+        std::vector<unsigned char> pixels(width * height * 4);
 
         // Read pixels from the framebuffer
         glPixelStorei(GL_PACK_ALIGNMENT, 1); // Important for correct data alignment
-        glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, pixels.data());
+        glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, pixels.data());
 
         // Check for OpenGL errors
         GLenum error = glGetError();
@@ -64,12 +64,12 @@ namespace space
     {
 
         // Flip the image vertically as OpenGL's origin is bottom left
-        std::vector<unsigned char> flippedPixels(width * height * 3);
+        std::vector<unsigned char> flippedPixels(width * height * 4);
         for (unsigned int y = 0; y < height; ++y) {
             for (unsigned int x = 0; x < width; ++x) {
-                for (unsigned int c = 0; c < 3; ++c) {
-                    flippedPixels[(y * width + x) * 3 + c] =
-                        pixels[((height - 1 - y) * width + x) * 3 + c];
+                for (unsigned int c = 0; c < 4; ++c) {  
+                    flippedPixels[(y * width + x) * 4 + c] =
+                        pixels[((height - 1 - y) * width + x) * 4 + c];
                 }
             }
         }
@@ -80,7 +80,7 @@ namespace space
         switch (format) {
         case ImageFormat::PNG:
             // Use stride parameter correctly - width * 3 for RGB data
-            success = stbi_write_png(filename.c_str(), width, height, 3, flippedPixels.data(), width * 3);
+            success = stbi_write_png(filename.c_str(), width, height, 4, flippedPixels.data(), width * 4);
             break;
         case ImageFormat::JPG:
             success = stbi_write_jpg(filename.c_str(), width, height, 3, flippedPixels.data(), 90); // Quality 90

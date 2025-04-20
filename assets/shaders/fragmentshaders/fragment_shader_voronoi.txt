@@ -2,7 +2,7 @@
 
 in vec3 vertex_position;
 in vec3 vertex_normal;
-in vec3 vertex_color;
+in vec4 vertex_color;
 
 out vec4 fragment_color;
 
@@ -31,38 +31,55 @@ vec3 hash3(vec2 p) {
 
 // Structure to hold Voronoi cell information
 struct VoronoiResult {
-    float dist;  // Distance to closest point
-    vec2 point;  // Closest point
-    vec2 cell;   // Cell ID (grid coordinates)
+    float dist1;     // Distance to closest point
+    float dist2;     // Distance to second closest point
+    vec2 point1;     // Closest point
+    vec2 point2;     // Second closest point
+    vec2 cell1;      // Closest cell ID
+    vec2 cell2;      // Second closest cell ID
 };
 
-// Voronoi noise implementation that returns additional information
-VoronoiResult voronoiDetailed(vec2 p) {
+// Enhanced Voronoi implementation using closest and second-closest points
+VoronoiResult voronoiEnhanced(vec2 p) {
     vec2 pi = floor(p);
     vec2 pf = fract(p);
     
     VoronoiResult result;
-    result.dist = 8.0;  // Initialize with large value
-    result.cell = vec2(0.0);
-    result.point = vec2(0.0);
+    result.dist1 = 8.0;  // Initialize with large values
+    result.dist2 = 8.0;
+    result.cell1 = vec2(0.0);
+    result.cell2 = vec2(0.0);
+    result.point1 = vec2(0.0);
+    result.point2 = vec2(0.0);
     
-    // Check neighboring cells
-    for(int y = -1; y <= 1; y++) {
-        for(int x = -1; x <= 1; x++) {
+    // Check neighboring cells (expanding search radius to 2 for better edge quality)
+    for(int y = -2; y <= 2; y++) {
+        for(int x = -2; x <= 2; x++) {
             vec2 neighbor = vec2(x, y);
             vec2 cellId = pi + neighbor;
-            vec2 point = hash2(cellId);
             
-            // Animate point position slightly with time
-            point = 0.5 * sin(time * 0.3 + 6.2831 * point);
+            // Generate point within cell - STATIC version (no time)
+            vec2 cellPoint = hash2(cellId);
+            cellPoint = 0.5 * sin( 6.2831 * cellPoint);
             
-            vec2 diff = neighbor + point - pf;
+            // Calculate distance to this point
+            vec2 diff = neighbor + cellPoint - pf;
             float dist = length(diff);
             
-            if(dist < result.dist) {
-                result.dist = dist;
-                result.cell = cellId;
-                result.point = point;
+            // Update closest and second closest distances
+            if(dist < result.dist1) {
+                result.dist2 = result.dist1;
+                result.cell2 = result.cell1;
+                result.point2 = result.point1;
+                
+                result.dist1 = dist;
+                result.cell1 = cellId;
+                result.point1 = cellPoint;
+            } 
+            else if(dist < result.dist2) {
+                result.dist2 = dist;
+                result.cell2 = cellId;
+                result.point2 = cellPoint;
             }
         }
     }
@@ -70,22 +87,34 @@ VoronoiResult voronoiDetailed(vec2 p) {
     return result;
 }
 
-// FBM (Fractal Brownian Motion) for multiple octaves of Voronoi noise
-VoronoiResult fbm(vec2 p) {
-    VoronoiResult result = voronoiDetailed(p * frequency);
-    float value = amplitude * result.dist;
+// Improved FBM (Fractal Brownian Motion) for multiple octaves of Voronoi noise
+VoronoiResult fbmVoronoi(vec2 p) {
+    // Start with base octave
+    VoronoiResult result = voronoiEnhanced(p * frequency);
+    
+    // Store base values
+    float value1 = amplitude * result.dist1;
+    float value2 = amplitude * result.dist2;
+    
+    // Accumulate additional octaves
     float freq = frequency;
     float amp = amplitude;
     
-    // Add multiple layers of noise
     for(int i = 1; i < octaves; i++) {
         freq *= 2.0;
         amp *= 0.5;
-        VoronoiResult octave = voronoiDetailed(p * freq);
-        value += amp * octave.dist;
+        
+        // Get higher frequency detail
+        VoronoiResult octave = voronoiEnhanced(p * freq);
+        
+        // Add detail to distance values
+        value1 += amp * octave.dist1;
+        value2 += amp * octave.dist2;
     }
     
-    result.dist = value;
+    // Apply accumulated distances but keep original cell info
+    result.dist1 = value1;
+    result.dist2 = value2;
     return result;
 }
 
@@ -93,21 +122,23 @@ void main() {
     // Use the screen-space coordinates for the noise
     vec2 noiseCoord = gl_FragCoord.xy * noise_scale / 100.0;
     
-    // Add time for animation
-    noiseCoord += time * 0.1;
-    
     // Generate detailed Voronoi information
-    VoronoiResult result = fbm(noiseCoord);
+    VoronoiResult result = fbmVoronoi(noiseCoord);
     
     // Generate color based on cell ID
-    vec3 cellColor = hash3(result.cell);
+    vec3 cellColor = hash3(result.cell1);
     
-    // Create edges between cells
-    float edge = smoothstep(0.02, 0.05, result.dist);
+    // Calculate the edge using the difference between first and second closest points
+    float edge = result.dist2 - result.dist1;
+    
+    // Apply smoothstep for controllable edge thickness
+    float edgeThreshold = 0.03 * (1.0/frequency) * amplitude; 
+    float edgeThickness = 0.05 * (1.0/frequency);
+    float edgeFactor = smoothstep(edgeThickness, edgeThreshold + edgeThickness, edge);
     
     // Final color: bright cell colors with dark edges
-    vec3 finalColor = mix(vec3(0.1), cellColor * 1.2, edge);
+    vec3 finalColor = mix(vec3(0.05), cellColor, edgeFactor);
     
     // Output the final color
-    fragment_color = vec4(finalColor, 1.0);
+    fragment_color = vec4(finalColor, edgeFactor);
 }

@@ -26,12 +26,12 @@ namespace space
         maxGenerations(maxGen),
         currentGeneration(0),
         isRunning(false),
-        minFrequency(1.0f),
+        minFrequency(0.5f),
         maxFrequency(10.0f),
         minAmplitude(0.1f),
         maxAmplitude(1.0f),
         minOctaves(1),
-        maxOctaves(5)
+        maxOctaves(1)
     {
         std::random_device rd;
         rng = std::mt19937(rd());
@@ -75,7 +75,7 @@ namespace space
         //Generate random values within specified ranges
         params.frequency = minFrequency + uniformDist(rng) * (maxFrequency - minFrequency);
         params.amplitude = minAmplitude + uniformDist(rng) * (maxAmplitude - minAmplitude);
-        params.octaves = minOctaves + static_cast<int>(uniformDist(rng) * (maxOctaves - minOctaves + 1));
+        //params.octaves = minOctaves + static_cast<int>(uniformDist(rng) * (maxOctaves - minOctaves + 1));
 
 
         return params;
@@ -98,27 +98,11 @@ namespace space
 
     // Evaluate fitness for all individuals in the population
     void GeneticAlgorithm::evaluatePopulation() {
-        // First, render and capture screenshots for all individuals on the main thread
-        for (auto& individual : population) {
-            if (scenePtr) {
-                scenePtr->setFrequency(individual.frequency);
-                scenePtr->setAmplitude(individual.amplitude);
-                scenePtr->setOctaves(individual.octaves);
-
-                scenePtr->render();
-                scenePtr->takeScreenshot();
-
-                // Store the screenshot path for this individual
-                int lastImageCounter = scenePtr->getScreenshotExporter()->getLastImageCounter();
-                individual.screenshotPath = "../../../assets/generated_images/image_" +
-                    std::to_string(lastImageCounter) + ".png";
-            }
-        }
-
-        // Now evaluate fitness in parallel (without rendering)
+        // Define number of threads based on hardware
         unsigned int numThreads = std::thread::hardware_concurrency();
-        numThreads = numThreads > 0 ? numThreads : 4;
+        numThreads = numThreads > 0 ? numThreads : 4; // Default to 4 if detection fails
 
+        // Split population into chunks for parallel processing
         std::vector<std::thread> threads;
         size_t chunkSize = population.size() / numThreads;
 
@@ -128,13 +112,12 @@ namespace space
 
             threads.push_back(std::thread([this, start, end]() {
                 for (size_t i = start; i < end; ++i) {
-                    // Only evaluate fitness, no rendering or screenshot taking
-                    population[i].fitness = fitnessEvaluator(population[i], population[i].screenshotPath);
+                    evaluateIndividual(population[i]);
                 }
                 }));
         }
 
-        // Join threads
+        // Join all threads
         for (auto& thread : threads) {
             thread.join();
         }
@@ -250,19 +233,19 @@ namespace space
             individual.amplitude = std::clamp(individual.amplitude + mutation, minAmplitude, maxAmplitude);
         }
 
-        // Mutate octaves (discrete parameter)
-        if (uniformDist(rng) < currentMutationRate) {
-            // Use a more nuanced approach for discrete parameter
-            if (uniformDist(rng) < 0.5f) {
-                // 50% chance to increment or decrement by 1
-                int change = (uniformDist(rng) < 0.5f) ? -1 : 1;
-                individual.octaves = std::clamp(individual.octaves + change, minOctaves, maxOctaves);
-            }
-            else {
-                // 50% chance to set to random value within range
-                individual.octaves = minOctaves + static_cast<int>(uniformDist(rng) * (maxOctaves - minOctaves + 1));
-            }
-        }
+        //// Mutate octaves (discrete parameter)
+        //if (uniformDist(rng) < currentMutationRate) {
+        //    // Use a more nuanced approach for discrete parameter
+        //    if (uniformDist(rng) < 0.5f) {
+        //        // 50% chance to increment or decrement by 1
+        //        int change = (uniformDist(rng) < 0.5f) ? -1 : 1;
+        //        individual.octaves = std::clamp(individual.octaves + change, minOctaves, maxOctaves);
+        //    }
+        //    else {
+        //        // 50% chance to set to random value within range
+        //        individual.octaves = minOctaves + static_cast<int>(uniformDist(rng) * (maxOctaves - minOctaves + 1));
+        //    }
+        //}
     }
 
     // Evolve the population by one generation
@@ -317,7 +300,7 @@ namespace space
                 newPopulation.push_back(child2);
             }
         }
-
+        maintainPopulationDiversity();
         // Replace old population with new one
         population = std::move(newPopulation);
         currentGeneration++;
@@ -397,5 +380,68 @@ namespace space
         maxAmplitude = maxAmp;
         minOctaves = minOct;
         maxOctaves = maxOct;
+    }
+    
+    void GeneticAlgorithm::resetWithSeed(const VoronoiParameters& seedParams) 
+    {
+        population.clear();
+        population.reserve(populationSize);
+
+        // Add the seed parameters
+        population.push_back(seedParams);
+
+        // Create variations around the seed
+        for (size_t i = 1; i < populationSize; ++i) {
+            VoronoiParameters variation = seedParams;
+            // Create small variations
+            variation.frequency += (uniformDist(rng) * 2.0f - 1.0f) * (maxFrequency - minFrequency) * 0.1f;
+            variation.amplitude += (uniformDist(rng) * 2.0f - 1.0f) * (maxAmplitude - minAmplitude) * 0.1f;
+
+            // Occasionally change octaves
+            /*if (uniformDist(rng) < 0.3f) {
+                int change = (uniformDist(rng) < 0.5f) ? -1 : 1;
+                variation.octaves = std::clamp(variation.octaves + change, minOctaves, maxOctaves);
+            }*/
+
+            // Ensure constraints
+            variation.frequency = std::clamp(variation.frequency, minFrequency, maxFrequency);
+            variation.amplitude = std::clamp(variation.amplitude, minAmplitude, maxAmplitude);
+
+            population.push_back(variation);
+        }
+
+        currentGeneration = 0;
+        bestSolution = seedParams;
+        bestSolution.fitness = -1.0f; // Reset fitness
+    }
+
+    // Add diversity preservation method to GeneticAlgorithm class
+    void GeneticAlgorithm::maintainPopulationDiversity() {
+        // Calculate population statistics
+        float avgFitness = 0.0f;
+        for (const auto& individual : population) {
+            avgFitness += individual.fitness;
+        }
+        avgFitness /= population.size();
+
+        // Inject new random individuals if diversity is low
+        float diversityThreshold = 0.1f; // Adjust based on your fitness scale
+        bool needsDiversity = false;
+
+        // Check if fitness values are too similar
+        float fitnessVariance = 0.0f;
+        for (const auto& individual : population) {
+            fitnessVariance += (individual.fitness - avgFitness) * (individual.fitness - avgFitness);
+        }
+        fitnessVariance /= population.size();
+
+        if (fitnessVariance < diversityThreshold) {
+            // Replace 10% of population with new random individuals
+            int replacementCount = std::max(1, int(population.size() * 0.1));
+            for (int i = 0; i < replacementCount; i++) {
+                int idx = int(uniformDist(rng) * population.size());
+                population[idx] = generateRandomIndividual();
+            }
+        }
     }
 }

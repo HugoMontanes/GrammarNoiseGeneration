@@ -434,7 +434,7 @@ if __name__ == "__main__":
     
     # Example: Analyze a new texture
     if discriminator is not None:
-        result = analyze_new_texture(discriminator, "C:/Users/hugom/Documents/GitHub/GrammarNoiseGeneration/assets/database_images/image_1.png")
+        result = analyze_new_texture(discriminator, "C:/Users/hugom/Documents/GitHub/GrammarNoiseGeneration/assets/generated_images/image_1.png")
         
         # Find closest match
         closest = find_closest_match(discriminator, "C:/Users/hugom/Documents/GitHub/GrammarNoiseGeneration/assets/database_images/image_1.png", image_dir, metadata_file)

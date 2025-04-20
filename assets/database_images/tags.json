@@ -4,9 +4,9 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4396703839302063,
-            "frequency": 5.076478004455566,
-            "octaves": 3.0
+            "amplitude": 0.1499999612569809,
+            "frequency": 7.39999532699585,
+            "octaves": 1.0
         }
     },
     "image_2.png": {
@@ -14,9 +14,9 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.961770236492157,
-            "frequency": 6.906288146972656,
-            "octaves": 4.0
+            "amplitude": 0.1499999612569809,
+            "frequency": 7.39999532699585,
+            "octaves": 1.0
         }
     },
     "image_3.png": {
@@ -24,9 +24,9 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.961770236492157,
-            "frequency": 6.906288146972656,
-            "octaves": 4.0
+            "amplitude": 0.34737956523895264,
+            "frequency": 3.797127962112427,
+            "octaves": 1.0
         }
     },
     "image_4.png": {
@@ -34,9 +34,9 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.961770236492157,
-            "frequency": 6.906288146972656,
-            "octaves": 4.0
+            "amplitude": 0.34737956523895264,
+            "frequency": 3.797127962112427,
+            "octaves": 1.0
         }
     },
     "image_5.png": {
@@ -44,8 +44,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.7500000596046448,
+            "frequency": 2.8999996185302734,
             "octaves": 1.0
         }
     },
@@ -54,8 +54,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.7500000596046448,
+            "frequency": 2.8999996185302734,
             "octaves": 1.0
         }
     },
@@ -64,8 +64,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.7500000596046448,
+            "frequency": 2.8999996185302734,
             "octaves": 1.0
         }
     },
@@ -74,8 +74,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.7500000596046448,
+            "frequency": 2.8999996185302734,
             "octaves": 1.0
         }
     },
@@ -84,8 +84,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.7500000596046448,
+            "frequency": 2.8999996185302734,
             "octaves": 1.0
         }
     },
@@ -94,8 +94,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -104,8 +104,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -114,8 +114,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -124,8 +124,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -134,8 +134,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -144,8 +144,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -154,8 +154,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -164,8 +164,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -174,8 +174,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -184,8 +184,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -194,8 +194,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -204,8 +204,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -214,8 +214,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -224,8 +224,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -234,8 +234,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -244,8 +244,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -254,8 +254,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -264,8 +264,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -274,8 +274,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 2.399998903274536,
+            "frequency": 1.000000238418579,
             "octaves": 1.0
         }
     },
@@ -284,8 +284,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -294,8 +294,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -304,8 +304,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -314,8 +314,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -324,8 +324,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -334,8 +334,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -344,8 +344,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -354,8 +354,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -364,8 +364,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -374,8 +374,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -384,8 +384,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -394,8 +394,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -404,8 +404,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -414,8 +414,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -424,8 +424,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -434,8 +434,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -444,8 +444,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -454,8 +454,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -464,8 +464,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -474,8 +474,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -484,8 +484,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -494,8 +494,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -504,8 +504,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -514,8 +514,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -524,8 +524,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -534,8 +534,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -544,8 +544,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -554,8 +554,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -564,8 +564,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -574,8 +574,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -584,8 +584,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -594,8 +594,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -604,8 +604,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -614,8 +614,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -624,8 +624,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -634,8 +634,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -644,8 +644,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -654,8 +654,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -664,8 +664,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -674,8 +674,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -684,8 +684,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -694,8 +694,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -704,8 +704,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -714,8 +714,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -724,8 +724,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -734,8 +734,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -744,8 +744,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -754,8 +754,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -764,8 +764,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -774,8 +774,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -784,8 +784,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -794,8 +794,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -804,8 +804,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -814,8 +814,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -824,8 +824,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 6.899995803833008,
             "octaves": 1.0
         }
     },
@@ -834,8 +834,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -844,8 +844,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -854,8 +854,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -864,8 +864,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -874,8 +874,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -884,8 +884,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -894,8 +894,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -904,8 +904,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -914,8 +914,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -924,8 +924,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -934,8 +934,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -944,8 +944,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -954,8 +954,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -964,8 +964,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -974,8 +974,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -984,8 +984,8 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
             "octaves": 1.0
         }
     },
@@ -994,8 +994,1068 @@
             "voronoi"
         ],
         "parameters": {
-            "amplitude": 0.4000000059604645,
-            "frequency": 2.5,
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
+            "octaves": 1.0
+        }
+    },
+    "image_101.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.10000006854534148,
+            "frequency": 5.099997520446777,
+            "octaves": 1.0
+        }
+    },
+    "image_102.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_103.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_104.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_105.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_106.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_107.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_108.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_109.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_110.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_111.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_112.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_113.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_114.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_115.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_116.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_117.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_118.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_119.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_120.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_121.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_122.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_123.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_124.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_125.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_126.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_127.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_128.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_129.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_130.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_131.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_132.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_133.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_134.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_135.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_136.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_137.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_138.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4000000953674317,
+            "frequency": 2.8999996185302734,
+            "octaves": 1.0
+        }
+    },
+    "image_139.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_140.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_141.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_142.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_143.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_144.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_145.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_146.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_147.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_148.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_149.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_150.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_151.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_152.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 1.4000003337860107,
+            "octaves": 1.0
+        }
+    },
+    "image_153.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 2.6999998092651367,
+            "octaves": 1.0
+        }
+    },
+    "image_154.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.5999996662139893,
+            "frequency": 2.6999998092651367,
+            "octaves": 1.0
+        }
+    },
+    "image_155.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_156.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_157.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_158.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_159.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_160.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_161.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_162.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_163.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_164.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_165.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_166.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_167.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_168.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_169.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_170.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_171.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_172.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_173.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_174.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_175.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_176.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_177.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_178.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_179.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_180.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_181.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_182.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_183.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_184.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_185.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_186.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_187.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_188.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_189.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_190.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.200000062584877,
+            "frequency": 7.199995517730713,
+            "octaves": 1.0
+        }
+    },
+    "image_191.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_192.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_193.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_194.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_195.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_196.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_197.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_198.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_199.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_200.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_201.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_202.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_203.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_204.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_205.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
+            "octaves": 1.0
+        }
+    },
+    "image_206.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.15000006556510925,
+            "frequency": 4.999997615814209,
             "octaves": 1.0
         }
     }

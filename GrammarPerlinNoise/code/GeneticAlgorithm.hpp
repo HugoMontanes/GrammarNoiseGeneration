@@ -19,7 +19,7 @@ namespace space
         float amplitude;
         int octaves;
         float fitness;
-        std::string screenshotPath;
+        /*std::string screenshotPath;*/
 
         VoronoiParameters(float freq = 2.5f, float amp = 0.4f, int oct = 1)
             : frequency(freq), amplitude(amp), octaves(oct), fitness(0.0f){}
@@ -93,5 +93,8 @@ namespace space
 			float minAmp, float maxAmp,
 			int minOct, int maxOct
 		);
+
+        void resetWithSeed(const VoronoiParameters& seedParams);
+        void maintainPopulationDiversity();
     };
 }
