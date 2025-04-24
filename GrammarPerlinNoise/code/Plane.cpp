@@ -35,7 +35,7 @@ namespace space
 				/**
 				* Colors
 				*/
-				colors.emplace_back(1.0f, 1.0f, 1.0f);
+				colors.emplace_back(1.0f, 1.0f, 1.0f, 1.0f);
 			}
 		}
 

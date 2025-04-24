@@ -35,6 +35,7 @@ namespace space
         SDL_GL_SetAttribute (SDL_GL_CONTEXT_MINOR_VERSION, context_details.version_minor);
         SDL_GL_SetAttribute (SDL_GL_DOUBLEBUFFER,          1);
         SDL_GL_SetAttribute (SDL_GL_ACCELERATED_VISUAL,    1);
+        SDL_GL_SetAttribute (SDL_GL_ALPHA_SIZE, 8);
 
         if (context_details.core_profile       ) SDL_GL_SetAttribute (SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
         if (context_details.depth_buffer_size  ) SDL_GL_SetAttribute (SDL_GL_DEPTH_SIZE,     context_details.depth_buffer_size);

@@ -17,8 +17,9 @@ int main(int, char* []) {
 
     // Create GA but don't run it automatically
     space::GeneticAlgorithm ga(&scene, 25, 0.8f, 0.2f, 10);
-    scene.configureScreenshotPath("../../../assets/database_images");
+    scene.configureScreenshotPath("../../../assets/generated_images");
     ga.setParameterConstraints(1.0f, 10.0f, 0.1f, 1.0f, 1, 5);
+    
 
     // GA control variables
     bool gaRunning = false;
@@ -158,6 +159,9 @@ int main(int, char* []) {
         deltaTime = (double)((NOW - LAST) / (double)SDL_GetPerformanceFrequency());
 
         scene.update(deltaTime);
+
+        SDL_Delay(5);
+
         scene.render();
         window.swap_buffers();
     }

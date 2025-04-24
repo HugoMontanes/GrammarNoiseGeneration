@@ -41,6 +41,8 @@ namespace space
         float minAmplitude, maxAmplitude;
         int minOctaves, maxOctaves;
 
+        std::string screenshotPath;
+
         //Random generators
         std::mt19937 rng;
         std::uniform_real_distribution<float> uniformDist;
@@ -96,5 +98,7 @@ namespace space
 
         void resetWithSeed(const VoronoiParameters& seedParams);
         void maintainPopulationDiversity();
+
+        void setScreenshotPath(const std::string& path);
     };
 }

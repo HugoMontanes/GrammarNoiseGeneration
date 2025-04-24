@@ -88,5 +88,7 @@ namespace space
         {
             screenshotExporter = std::make_shared<ScreenshotExporter>(path);
         }
+
+        bool checkFramebufferStatus();
     };
 }

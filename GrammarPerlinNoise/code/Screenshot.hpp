@@ -36,6 +36,7 @@ namespace space
 
         // Add getter for the last image counter
         int getLastImageCounter() const { return counter - 1; }
+        std::string getOutputPath() const { return outputPath; }
 
 
     private:

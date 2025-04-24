@@ -20,9 +20,9 @@ namespace space
 
 		shader_program = std::make_unique<ShaderProgram>();
 
-		screenshotExporter = std::make_unique<ScreenshotExporter>("../../../assets/database_images");
+		screenshotExporter = std::make_unique<ScreenshotExporter>("../../../assets/generated_images");
 
-		parameterLogger = std::make_unique<ShaderParameterLogger>("../../../assets/database_images/tags.json");
+		parameterLogger = std::make_unique<ShaderParameterLogger>("../../../assets/generated_images/tags.json");
 
 		VertexShader vertex_shader;
 		if (!vertex_shader.loadFromFile("../../../assets/shaders/vertexshaders/vertex_shader.glsl"))
@@ -59,7 +59,6 @@ namespace space
 		frequency_id = glGetUniformLocation(shader_program->getProgramID(), "frequency");
 		amplitude_id = glGetUniformLocation(shader_program->getProgramID(), "amplitude");
 		octaves_id = glGetUniformLocation(shader_program->getProgramID(), "octaves");
-
 		
 
 		//Root node
@@ -70,12 +69,6 @@ namespace space
 		activeCamera->position = glm::vec3(0, 20, 50);
 		activeCamera->rotation = glm::vec3(-0.4f, 0.0f, 0.0f);
 		root->addChild(activeCamera);
-
-		/*auto planeNode = std::make_shared<SceneNode>("plane");
-		planeNode->mesh = std::make_shared<Plane>(5, 5, 40.0f, 40.0f);
-		planeNode->position = glm::vec3(0, -2, 0);
-		planeNode->rotation = glm::vec3(1.15, 0, 0);
-		root->addChild(planeNode);*/
 
 		auto quadNode = std::make_shared<SceneNode>("screen_quad");
 		quadNode->mesh = std::make_shared<ScreenQuad>();
@@ -99,7 +92,6 @@ namespace space
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 		handleKeyboard(keyboardState);
 
-		updateCamera(deltaTime);
 	}
 
 	void Scene::renderNode(const std::shared_ptr<SceneNode>& node, const glm::mat4& viewMatrix)
@@ -218,10 +210,25 @@ namespace space
 		}
 
 		ZWasPressed = ZIsPressed;
+
+
+		static bool EscWasPressed = false;
+		bool EscIsPressed = keyboardState[SDL_SCANCODE_ESCAPE];
+
+		if (EscIsPressed && !EscWasPressed)
+		{
+			SDL_Quit();
+		}
+
+		EscWasPressed = EscIsPressed;
 	}
 
 	bool Scene::takeScreenshot(ScreenshotExporter::ImageFormat format)
 	{
+		if (!checkFramebufferStatus()) {
+			std::cerr << "Error: Framebuffer not complete before screenshot" << std::endl;
+			return false;
+		}
 
 		int width, height;
 		SDL_GetWindowSize(SDL_GL_GetCurrentWindow(), &width, &height);
@@ -262,6 +269,17 @@ namespace space
 		}
 
 		return result;
+	}
+
+	bool Scene::checkFramebufferStatus()
+	{
+		GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+		if (status != GL_FRAMEBUFFER_COMPLETE)
+		{
+			std::cerr << "Framebuffer incomplete. Status: " << status << std::endl;
+			return false;
+		}
+		return true;
 	}
 }
 

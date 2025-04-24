@@ -60,7 +60,7 @@ VoronoiResult voronoiEnhanced(vec2 p) {
             
             // Generate point within cell - STATIC version (no time)
             vec2 cellPoint = hash2(cellId);
-            cellPoint = 0.5 * sin( 6.2831 * cellPoint);
+            cellPoint = 0.5 * sin(0.3* time* 6.2831 * cellPoint);
             
             // Calculate distance to this point
             vec2 diff = neighbor + cellPoint - pf;
@@ -130,14 +130,17 @@ void main() {
     
     // Calculate the edge using the difference between first and second closest points
     float edge = result.dist2 - result.dist1;
+
+    // pixel-space blur radius
+    float w = fwidth(edge);
     
     // Apply smoothstep for controllable edge thickness
-    float edgeThreshold = 0.03 * (1.0/frequency) * amplitude; 
-    float edgeThickness = 0.05 * (1.0/frequency);
+    float edgeThreshold = 0.5 * (1.0/frequency); 
+    float edgeThickness = w * (1.0/frequency);
     float edgeFactor = smoothstep(edgeThickness, edgeThreshold + edgeThickness, edge);
     
     // Final color: bright cell colors with dark edges
-    vec3 finalColor = mix(vec3(0.05), cellColor, edgeFactor);
+    vec3 finalColor = mix( vec3(0.05), cellColor, edgeFactor);
     
     // Output the final color
     fragment_color = vec4(finalColor, edgeFactor);

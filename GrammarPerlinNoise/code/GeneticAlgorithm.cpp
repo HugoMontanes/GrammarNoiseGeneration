@@ -39,7 +39,7 @@ namespace space
 
         if (scenePtr)
         {
-            scenePtr->configureScreenshotPath("../../../assets/generated_images");
+            scenePtr->configureScreenshotPath(screenshotPath);
         }
 
         // Load the ONNX model for fitness evaluation
@@ -58,7 +58,7 @@ namespace space
                 scenePtr->render();
 
                 // Take screenshot to evaluate
-                scenePtr->takeScreenshot();
+                scenePtr->takeScreenshot(ScreenshotExporter::ImageFormat::PNG);
 
                 // Use ONNX model to evaluate the screenshot
                 float fitness = onnxModel->evaluateImage(screenshotPath);
@@ -96,34 +96,47 @@ namespace space
         bestSolution.fitness = -1.0f; // Initialize with worst possible fitness
     }
 
-    // Evaluate fitness for all individuals in the population
+    //// Evaluate fitness for all individuals in the population
+    //void GeneticAlgorithm::evaluatePopulation() {
+    //    // Define number of threads based on hardware
+    //    unsigned int numThreads = std::thread::hardware_concurrency();
+    //    numThreads = numThreads > 0 ? numThreads : 4; // Default to 4 if detection fails
+
+    //    // Split population into chunks for parallel processing
+    //    std::vector<std::thread> threads;
+    //    size_t chunkSize = population.size() / numThreads;
+
+    //    for (unsigned int t = 0; t < numThreads; ++t) {
+    //        size_t start = t * chunkSize;
+    //        size_t end = (t == numThreads - 1) ? population.size() : (t + 1) * chunkSize;
+
+    //        threads.push_back(std::thread([this, start, end]() {
+    //            for (size_t i = start; i < end; ++i) {
+    //                evaluateIndividual(population[i]);
+    //            }
+    //            }));
+    //    }
+
+    //    // Join all threads
+    //    for (auto& thread : threads) {
+    //        thread.join();
+    //    }
+
+    //    // Find best solution
+    //    for (const auto& individual : population) {
+    //        if (individual.fitness > bestSolution.fitness) {
+    //            bestSolution = individual;
+    //        }
+    //    }
+    //}
+
+    // Sequential version of evaluatePopulation
     void GeneticAlgorithm::evaluatePopulation() {
-        // Define number of threads based on hardware
-        unsigned int numThreads = std::thread::hardware_concurrency();
-        numThreads = numThreads > 0 ? numThreads : 4; // Default to 4 if detection fails
+        // Process each individual sequentially
+        for (auto& individual : population) {
+            evaluateIndividual(individual);
 
-        // Split population into chunks for parallel processing
-        std::vector<std::thread> threads;
-        size_t chunkSize = population.size() / numThreads;
-
-        for (unsigned int t = 0; t < numThreads; ++t) {
-            size_t start = t * chunkSize;
-            size_t end = (t == numThreads - 1) ? population.size() : (t + 1) * chunkSize;
-
-            threads.push_back(std::thread([this, start, end]() {
-                for (size_t i = start; i < end; ++i) {
-                    evaluateIndividual(population[i]);
-                }
-                }));
-        }
-
-        // Join all threads
-        for (auto& thread : threads) {
-            thread.join();
-        }
-
-        // Find best solution
-        for (const auto& individual : population) {
+            // Update best solution if this individual is better
             if (individual.fitness > bestSolution.fitness) {
                 bestSolution = individual;
             }
@@ -134,7 +147,7 @@ namespace space
     void GeneticAlgorithm::evaluateIndividual(VoronoiParameters& individual) 
     {
 
-        std::lock_guard<std::mutex> lock(sceneMutex); // Add mutex as class member
+        //std::lock_guard<std::mutex> lock(sceneMutex); // Add mutex as class member
 
         if (scenePtr) {
             scenePtr->setFrequency(individual.frequency);
@@ -143,15 +156,28 @@ namespace space
 
             scenePtr->render();
 
-            std::string screenshotPath;
-            bool screenshotTaken = scenePtr->takeScreenshot();
+            //Make shure we complete the rendering before
+            glFinish();
+
+            //Take screenshot
+            bool screenshotTaken = scenePtr->takeScreenshot(ScreenshotExporter::ImageFormat::PNG);
 
             if (screenshotTaken) {
                 
                 // Get the last screenshot number and construct the path
                 int lastImageCounter = scenePtr->getScreenshotExporter()->getLastImageCounter();
-                screenshotPath = "../../../assets/generated_images/image_" + std::to_string(lastImageCounter) + ".png";
-                individual.fitness = fitnessEvaluator(individual, screenshotPath);
+                screenshotPath = scenePtr->getScreenshotExporter()->getOutputPath() + "image_" + std::to_string(lastImageCounter) + ".png";
+
+                // Verify file exists before evaluating
+                std::ifstream file(screenshotPath);
+                if (file.good()) {
+                    individual.fitness = fitnessEvaluator(individual, screenshotPath);
+                    file.close();
+                }
+                else {
+                    std::cerr << "Screenshot file not found: " << screenshotPath << std::endl;
+                    individual.fitness = 0.0f;
+                }
             }
             else
             {
@@ -442,6 +468,14 @@ namespace space
                 int idx = int(uniformDist(rng) * population.size());
                 population[idx] = generateRandomIndividual();
             }
+        }
+    }
+    void GeneticAlgorithm::setScreenshotPath(const std::string& path)
+    {
+        screenshotPath = path;
+        if (scenePtr)
+        {
+            scenePtr->configureScreenshotPath(path);
         }
     }
 }

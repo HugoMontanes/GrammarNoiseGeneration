@@ -20,6 +20,12 @@ namespace space
 
     bool ScreenshotExporter::captureScreenshot(unsigned int width, unsigned int height, ImageFormat format)
     {
+        // Check if we're in a valid OpenGL context
+        if (!gladLoadGL()) {
+            std::cerr << "Error: Trying to capture screenshot without valid OpenGL context" << std::endl;
+            return false;
+        }
+
         // Get actual viewport dimensions if not specified
         if (width == 0 || height == 0) {
             GLint viewport[4];
@@ -28,8 +34,19 @@ namespace space
             height = viewport[3];
         }
 
-        // Allocate memory for the pixel data (RGB format)
+        // Print dimensions for debugging
+        std::cout << "Capturing screenshot with dimensions: " << width << "x" << height << std::endl;
+
+        // Allocate memory for the pixel data
         std::vector<unsigned char> pixels(width * height * 4);
+
+        // Make sure we're reading from the correct framebuffer
+        GLint currentFBO;
+        glGetIntegerv(GL_FRAMEBUFFER_BINDING, &currentFBO);
+        std::cout << "Current framebuffer: " << currentFBO << std::endl;
+
+        // Clear any previous errors
+        while (glGetError() != GL_NO_ERROR);
 
         // Read pixels from the framebuffer
         glPixelStorei(GL_PACK_ALIGNMENT, 1); // Important for correct data alignment
@@ -55,6 +72,8 @@ namespace space
             filename << ".jpg";
             break;
         }
+
+        std::cout << "Saving screenshot to: " << filename.str() << std::endl;
 
         // Save the image
         return saveImage(filename.str(), width, height, pixels, format);
