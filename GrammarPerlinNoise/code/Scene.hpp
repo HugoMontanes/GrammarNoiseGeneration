@@ -2,7 +2,6 @@
 #pragma once
 
 #include"glm.hpp"
-#include <glad/glad.h>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 #include <SDL.h>
@@ -12,12 +11,12 @@
 #include <vector>
 
 #include "Mesh.hpp"
-#include "Plane.hpp"
 #include "ShaderProgram.hpp"
 #include "VertexShader.hpp"
 #include "FragmentShader.hpp"
 #include "SceneNode.hpp"
 #include "Camera.hpp"
+#include "Shader.hpp"
 #include "Screenshot.hpp"
 #include "ScreenQuad.hpp"
 #include "ShaderParameterLogger.hpp"
@@ -28,15 +27,13 @@ namespace space
 
     class Scene
     {
-
+        SDL_Window* window = nullptr;
         std::unique_ptr<ShaderProgram> shader_program;
         std::shared_ptr<SceneNode> root;
         std::shared_ptr<Camera> activeCamera;
         std::shared_ptr<ScreenshotExporter> screenshotExporter;
         std::unique_ptr<ShaderParameterLogger> parameterLogger;
 
-        float cameraSpeed = 10.0f;
-        float cameraRotationSpeed = 2.0f;
         glm::vec3 defaultCameraRotation = glm::vec3(0.0f); // Store default rotation
         std::unordered_map<SDL_Scancode, bool> keyStates;
 
@@ -57,12 +54,43 @@ namespace space
         float currentAmplitude = 0.4f;
         int currentOctaves = 1;
 
+        GLuint framebufferObject;
+        GLuint frameTextureObject;
+        GLuint depthRenderBuffer;
+        unsigned fboWidth;
+        unsigned int fboHeight;
+
+        bool initFramebuffer(unsigned int width, unsigned int height);
+        void deleteFramebuffer();
+        bool resizeFramebuffer(unsigned int width, unsigned int height);
+
+
+        bool saveFramebufferToFile(const std::string& filename, ScreenshotExporter::ImageFormat format);
+        bool prepareFramebuffer();
+        static const char* fbStatusString(GLenum status)
+        {
+            switch (status) {
+            case GL_FRAMEBUFFER_COMPLETE:                      return "GL_FRAMEBUFFER_COMPLETE";
+            case GL_FRAMEBUFFER_UNDEFINED:                     return "GL_FRAMEBUFFER_UNDEFINED";
+            case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:         return "GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT";
+            case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT: return "GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT";
+            case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER:        return "GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER";
+            case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER:        return "GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER";
+            case GL_FRAMEBUFFER_UNSUPPORTED:                   return "GL_FRAMEBUFFER_UNSUPPORTED";
+            case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE:        return "GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE";
+            case GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS:      return "GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS";
+            default:                                           return "Unknown FBO status";
+            }
+        }
+
     public:
         
         Scene(unsigned width, unsigned height);
+        ~Scene();
 
         void update(float deltaTime);
         void render();
+        void renderToFBO();
         void resize(unsigned width, unsigned height);
         void renderNode(const std::shared_ptr<SceneNode>& node, const glm::mat4& viewMatrix);
         std::shared_ptr<SceneNode> createNode(const std::string& name, std::shared_ptr<SceneNode> parent = nullptr);

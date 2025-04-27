@@ -58,7 +58,7 @@ namespace space
                 scenePtr->render();
 
                 // Take screenshot to evaluate
-                scenePtr->takeScreenshot(ScreenshotExporter::ImageFormat::PNG);
+                /*scenePtr->takeScreenshot(ScreenshotExporter::ImageFormat::PNG);*/
 
                 // Use ONNX model to evaluate the screenshot
                 float fitness = onnxModel->evaluateImage(screenshotPath);
@@ -154,10 +154,7 @@ namespace space
             scenePtr->setAmplitude(individual.amplitude);
             scenePtr->setOctaves(individual.octaves);
 
-            scenePtr->render();
-
-            //Make shure we complete the rendering before
-            glFinish();
+            scenePtr->renderToFBO();
 
             //Take screenshot
             bool screenshotTaken = scenePtr->takeScreenshot(ScreenshotExporter::ImageFormat::PNG);

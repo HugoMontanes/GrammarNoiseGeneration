@@ -16,7 +16,7 @@ int main(int, char* []) {
     space::Scene scene(viewport_width, viewport_height);
 
     // Create GA but don't run it automatically
-    space::GeneticAlgorithm ga(&scene, 25, 0.8f, 0.2f, 10);
+    space::GeneticAlgorithm ga(&scene, 10, 0.8f, 0.2f, 10);
     scene.configureScreenshotPath("../../../assets/generated_images");
     ga.setParameterConstraints(1.0f, 10.0f, 0.1f, 1.0f, 1, 5);
     
@@ -24,7 +24,6 @@ int main(int, char* []) {
     // GA control variables
     bool gaRunning = false;
     bool gaInitialized = false;
-    std::thread gaThread;
 
     // Add a mode variable for UI
     enum class Mode { MANUAL, GENETIC_ALGORITHM };
@@ -68,21 +67,30 @@ int main(int, char* []) {
                     if (currentMode == Mode::GENETIC_ALGORITHM && gaRunning) {
                         // Stop GA
                         ga.stop();
-                        if (gaThread.joinable()) {
-                            gaThread.join();
-                        }
                         gaRunning = false;
                         std::cout << "Genetic algorithm stopped." << std::endl;
                     }
                     else {
-                        // Start or resume GA
+                        // Start or resume GA - run in main thread!
                         currentMode = Mode::GENETIC_ALGORITHM;
                         gaRunning = true;
-                        if (gaThread.joinable()) gaThread.join(); // Clean up any existing thread
-                        gaThread = std::thread([&ga]() {
-                            ga.run();
-                            });
                         std::cout << "Genetic algorithm started." << std::endl;
+                        ga.run();  // This will block until complete - no thread
+                        gaRunning = false;
+
+                        // After GA completes, apply the best solution
+                        auto best = ga.getBestSolution();
+                        scene.setFrequency(best.frequency);
+                        scene.setAmplitude(best.amplitude);
+                        scene.setOctaves(best.octaves);
+
+                        // Render the best solution to the default framebuffer
+                        glBindFramebuffer(GL_FRAMEBUFFER, 0);  // Bind default framebuffer
+                        scene.render();  // This will render to whatever framebuffer is bound
+                        window.swap_buffers();
+
+                        std::cout << "Applied best solution: f=" << best.frequency
+                            << ", a=" << best.amplitude << ", o=" << best.octaves << std::endl;
                     }
                 }
 
@@ -168,9 +176,6 @@ int main(int, char* []) {
 
     // Clean shutdown
     ga.stop();
-    if (gaThread.joinable()) {
-        gaThread.join();
-    }
 
     return 0;
 }

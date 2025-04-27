@@ -5,6 +5,7 @@
 #include <locale>
 #include <codecvt>
 #include <Windows.h>
+#include <algorithm>
 
 ONNXModel::ONNXModel(const std::string& modelPath) : modelPath(modelPath) {
     try {
@@ -47,28 +48,30 @@ std::vector<float> ONNXModel::preprocessImage(const std::string& imagePath) {
         return {};
     }
 
-    // Resize to model expected input size (assuming 224x224)
+    // Resize to model expected input size (256x256)
     cv::Mat resizedImage;
-    cv::resize(image, resizedImage, cv::Size(224, 224));
+    cv::resize(image, resizedImage, cv::Size(256, 256));
+
+    // Convert to grayscale if needed (since model expects 256 channels)
+    cv::Mat grayImage;
+    if (resizedImage.channels() == 3 || resizedImage.channels() == 4) {
+        cv::cvtColor(resizedImage, grayImage, cv::COLOR_BGR2GRAY);
+    }
+    else {
+        grayImage = resizedImage;
+    }
 
     // Convert to float, scale to [0,1]
     cv::Mat floatImage;
-    resizedImage.convertTo(floatImage, CV_32F, 1.0 / 255.0);
+    grayImage.convertTo(floatImage, CV_32F, 1.0 / 255.0);
 
-    // Normalize with ImageNet mean and std (if needed)
-    // cv::Scalar mean(0.485, 0.456, 0.406);
-    // cv::Scalar std(0.229, 0.224, 0.225);
-    // floatImage = (floatImage - mean) / std;
+    // Reshape to match the expected dimensions (256x256x1)
+    std::vector<float> inputTensor(256 * 256);
 
-    // Rearrange from HWC to CHW (height, width, channels) -> (channels, height, width)
-    std::vector<float> inputTensor(3 * 224 * 224);
-
-    // Copy data from OpenCV Mat to flat vector in CHW format
-    for (int c = 0; c < 3; c++) {
-        for (int h = 0; h < 224; h++) {
-            for (int w = 0; w < 224; w++) {
-                inputTensor[c * 224 * 224 + h * 224 + w] = floatImage.at<cv::Vec3f>(h, w)[c];
-            }
+    // Copy data from OpenCV Mat to flat vector
+    for (int h = 0; h < 256; h++) {
+        for (int w = 0; w < 256; w++) {
+            inputTensor[h * 256 + w] = floatImage.at<float>(h, w);
         }
     }
 
@@ -84,17 +87,64 @@ float ONNXModel::evaluateImage(const std::string& imagePath) {
             return 0.0f; // Return minimum fitness on error
         }
 
+        // Get input node info to understand what the model expects
+        Ort::TypeInfo typeInfo = session->GetInputTypeInfo(0);
+        auto tensorInfo = typeInfo.GetTensorTypeAndShapeInfo();
+        std::vector<int64_t> expectedDims = tensorInfo.GetShape();
+
+        // Output expected dimensions for debugging
+        std::cout << "Expected input dimensions: [";
+        for (size_t i = 0; i < expectedDims.size(); i++) {
+            std::cout << expectedDims[i];
+            if (i < expectedDims.size() - 1) std::cout << ", ";
+        }
+        std::cout << "]" << std::endl;
+
+        std::vector<int64_t> inputDims = expectedDims;
+        for (auto& dim : inputDims) {
+            if (dim < 0) dim = 1;  // Replace dynamic dimensions with batch size 1
+        }
+
+        // Calculate expected size based on the adjusted dimensions
+        size_t expectedSize = 1;
+        for (auto dim : inputDims) {
+            expectedSize *= dim;  // All dimensions should be positive now
+        }
+        std::cout << "Expected input size: " << expectedSize << std::endl;
+        std::cout << "Provided input size: " << inputTensor.size() << std::endl;
+
         // Define input shape
-        std::vector<int64_t> inputShape = { 1, 3, 224, 224 }; // Batch, Channels, Height, Width
+        //std::vector<int64_t> inputShape = { 1, 4, 256, 356 }; // Batch, Channels, Height, Width
+
+        std::vector<float> resizedInputTensor;
+        if (inputTensor.size() == expectedSize) {
+            resizedInputTensor = std::move(inputTensor);
+        }
+        else {
+            // Resize if necessary (we should avoid this situation by preprocessing correctly)
+            resizedInputTensor.resize(expectedSize, 0.0f);
+            size_t copySize = (std::min)(inputTensor.size(), expectedSize);
+            std::copy_n(inputTensor.begin(), copySize, resizedInputTensor.begin());
+            std::cout << "Warning: Input tensor size mismatch. Resized from "
+                << inputTensor.size() << " to " << expectedSize << std::endl;
+        }
+
+        Ort::Value inputOnnxTensor = Ort::Value::CreateTensor<float>(
+            *memoryInfo,
+            resizedInputTensor.data(),
+            resizedInputTensor.size(),
+            inputDims.data(),
+            inputDims.size()
+        );
 
         // Create input tensor
-        Ort::Value inputOnnxTensor = Ort::Value::CreateTensor<float>(
+        /*Ort::Value inputOnnxTensor = Ort::Value::CreateTensor<float>(
             *memoryInfo,
             inputTensor.data(),
             inputTensor.size(),
             inputShape.data(),
             inputShape.size()
-        );
+        );*/
 
         // Define input and output names
         Ort::AllocatorWithDefaultOptions allocator;
@@ -122,9 +172,12 @@ float ONNXModel::evaluateImage(const std::string& imagePath) {
         // For a classification model, you might need to get the highest class probability
         float fitnessScore = floatOutput[0];
 
+        // Print the result for debugging
+        std::cout << "Fitness score: " << fitnessScore << std::endl;
+
         // Free allocated memory
-        allocator.Free(const_cast<char*>(inputName));
-        allocator.Free(const_cast<char*>(outputName));
+        /*allocator.Free(const_cast<char*>(inputName));
+        allocator.Free(const_cast<char*>(outputName));*/
 
         return fitnessScore;
     }

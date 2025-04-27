@@ -37,11 +37,11 @@ namespace space
         // Add getter for the last image counter
         int getLastImageCounter() const { return counter - 1; }
         std::string getOutputPath() const { return outputPath; }
-
+        bool saveImage(const std::string& filename, unsigned int width, unsigned int height, const std::vector<unsigned char>& pixels, ImageFormat format);
+        void incrementCounter() { counter++; }
 
     private:
 
-        bool saveImage(const std::string& filename, unsigned int width, unsigned int height, const std::vector<unsigned char>& pixels, ImageFormat format);
         bool ensureDirectoryExists(const std::string& path);
     };
 }

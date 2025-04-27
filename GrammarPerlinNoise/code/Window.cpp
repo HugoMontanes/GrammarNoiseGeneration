@@ -7,6 +7,7 @@
 #include <cassert>
 #include <glad/glad.h>
 #include <SDL_opengl.h>
+#include <iostream>
 #include "Window.hpp"
 
 namespace space
@@ -63,9 +64,21 @@ namespace space
 
         // Una vez se ha creado el contexto de OpenGL ya se puede inicializar GLAD:
 
-        GLenum glad_is_initialized = gladLoadGL ();
+        if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
+            std::cerr << "Failed to initialize GLAD via SDL\n";
+            std::exit(-1);
+        }
 
-        assert(glad_is_initialized);
+        std::cout << "GL_VERSION:   " << (const char*)glGetString(GL_VERSION) << "\n"
+            << "GLSL_VERSION: " << (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION) << "\n";
+
+        // Are the FBO entry?points there?
+        if (!glGenFramebuffers || !glBindFramebuffer || !glCheckFramebufferStatus) {
+            std::cerr << "FBO functions NOT loaded!\n";
+        }
+        else {
+            std::cout << "FBO functions are present.\n";
+        }
 
         // Se activa la sincronización con el refresco vertical del display:
 

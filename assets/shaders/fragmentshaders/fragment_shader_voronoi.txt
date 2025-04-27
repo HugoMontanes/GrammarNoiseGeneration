@@ -18,7 +18,7 @@ uniform int octaves;
 // Hash function for randomization
 vec2 hash2(vec2 p) {
     p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
-    return -1.0 + 2.0 * fract(sin(p) * 43758.5453123);
+    return fract(sin(p) * 43758.5453123) * 2.0 - 1.0;
 }
 
 // Hash function that returns RGB color
@@ -60,7 +60,7 @@ VoronoiResult voronoiEnhanced(vec2 p) {
             
             // Generate point within cell - STATIC version (no time)
             vec2 cellPoint = hash2(cellId);
-            cellPoint = 0.5 * sin(0.3* time* 6.2831 * cellPoint);
+            cellPoint *= 0.5;
             
             // Calculate distance to this point
             vec2 diff = neighbor + cellPoint - pf;
@@ -125,23 +125,20 @@ void main() {
     // Generate detailed Voronoi information
     VoronoiResult result = fbmVoronoi(noiseCoord);
     
-    // Generate color based on cell ID
-    vec3 cellColor = hash3(result.cell1);
-    
     // Calculate the edge using the difference between first and second closest points
     float edge = result.dist2 - result.dist1;
 
-    // pixel-space blur radius
-    float w = fwidth(edge);
+    // Generate color based on cell ID
+    vec3 cellColor = hash3(result.cell1);
     
     // Apply smoothstep for controllable edge thickness
     float edgeThreshold = 0.5 * (1.0/frequency); 
-    float edgeThickness = w * (1.0/frequency);
+    float edgeThickness = edge * (1.0/frequency);
     float edgeFactor = smoothstep(edgeThickness, edgeThreshold + edgeThickness, edge);
     
     // Final color: bright cell colors with dark edges
-    vec3 finalColor = mix( vec3(0.05), cellColor, edgeFactor);
+    //vec3 finalColor = mix(  vec3(0.0), cellColor, edgeFactor);
     
     // Output the final color
-    fragment_color = vec4(finalColor, edgeFactor);
+    fragment_color = vec4(cellColor, edgeFactor);
 }

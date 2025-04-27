@@ -105,7 +105,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DSDL_GL_NO_PROTOTYPES;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\..\..\libraries\sdl\include;..\..\..\libraries\glad\include;..\..\..\libraries\glm\include;..\..\..\libraries\stb\include;..\..\..\libraries\rapidjson\include;..\..\..\libraries\ONNX\Microsoft.ML.OnnxRuntime.Gpu.Windows.1.17.0\buildTransitive\native\include;..\..\..\libraries\opencv\sources\include;..\..\..\libraries\opencv\build\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -123,7 +123,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DSDL_GL_NO_PROTOTYPES;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\..\..\libraries\sdl\include;..\..\..\libraries\glad\include;..\..\..\libraries\glm\include;..\..\..\libraries\stb\include;..\..\..\libraries\rapidjson\include;..\..\..\libraries\ONNX\Microsoft.ML.OnnxRuntime.Gpu.Windows.1.17.0\buildTransitive\native\include;..\..\..\libraries\opencv\sources\include;..\..\..\libraries\opencv\build\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -142,7 +142,6 @@
     <ClCompile Include="..\..\code\main.cpp" />
     <ClCompile Include="..\..\code\Mesh.cpp" />
     <ClCompile Include="..\..\code\ONNXModel.cpp" />
-    <ClCompile Include="..\..\code\Plane.cpp" />
     <ClCompile Include="..\..\code\Scene.cpp" />
     <ClCompile Include="..\..\code\ScreenQuad.cpp" />
     <ClCompile Include="..\..\code\Screenshot.cpp" />
@@ -156,7 +155,6 @@
     <ClInclude Include="..\..\code\GeneticAlgorithm.hpp" />
     <ClInclude Include="..\..\code\Mesh.hpp" />
     <ClInclude Include="..\..\code\ONNXModel.hpp" />
-    <ClInclude Include="..\..\code\Plane.hpp" />
     <ClInclude Include="..\..\code\Scene.hpp" />
     <ClInclude Include="..\..\code\SceneNode.hpp" />
     <ClInclude Include="..\..\code\ScreenQuad.hpp" />

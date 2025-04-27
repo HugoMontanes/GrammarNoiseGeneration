@@ -31,70 +31,79 @@ vec3 hash3(vec2 p) {
 
 // Structure to hold Voronoi cell information
 struct VoronoiResult {
-    float dist1;     // Distance to closest point
-    float dist2;     // Distance to second closest point
-    vec2 point1;     // Closest point
-    vec2 point2;     // Second closest point
-    vec2 cell1;      // Closest cell ID
-    vec2 cell2;      // Second closest cell ID
+    float dist;      // Distance to edge (using Inigo's method)
+    vec2 cell;       // Closest cell ID for coloring
+    vec2 point;      // Closest point
 };
 
-// Enhanced Voronoi implementation using closest and second-closest points
+// Enhanced Voronoi implementation using Inigo's edge detection approach
 VoronoiResult voronoiEnhanced(vec2 p) {
     vec2 pi = floor(p);
     vec2 pf = fract(p);
     
-    VoronoiResult result;
-    result.dist1 = 8.0;  // Initialize with large values
-    result.dist2 = 8.0;
-    result.cell1 = vec2(0.0);
-    result.cell2 = vec2(0.0);
-    result.point1 = vec2(0.0);
-    result.point2 = vec2(0.0);
+    // First pass: find closest point
+    float minDist = 8.0;
+    vec2 minPoint = vec2(0.0);
+    vec2 minCell = vec2(0.0);
+    vec2 minOffset = vec2(0.0);
     
-    // Check neighboring cells (expanding search radius to 2 for better edge quality)
+    for(int y = -1; y <= 1; y++) {
+        for(int x = -1; x <= 1; x++) {
+            vec2 neighbor = vec2(x, y);
+            vec2 cellId = pi + neighbor;
+            
+            // Generate point within cell
+            vec2 cellPoint = hash2(cellId) * 0.5;
+            vec2 diff = neighbor + cellPoint - pf;
+            float dist = dot(diff, diff); // Squared distance for speed
+            
+            if(dist < minDist) {
+                minDist = dist;
+                minPoint = cellPoint;
+                minCell = cellId;
+                minOffset = diff;
+            }
+        }
+    }
+    
+    // Second pass: find edge distance using Inigo's method
+    float edgeDist = 8.0;
+    
     for(int y = -2; y <= 2; y++) {
         for(int x = -2; x <= 2; x++) {
             vec2 neighbor = vec2(x, y);
             vec2 cellId = pi + neighbor;
             
-            // Generate point within cell - STATIC version (no time)
-            vec2 cellPoint = hash2(cellId);
-            cellPoint *= 0.5;
+            // Skip the closest cell (already processed)
+            if(cellId == minCell) continue;
             
-            // Calculate distance to this point
+            // Generate point within cell
+            vec2 cellPoint = hash2(cellId) * 0.5;
             vec2 diff = neighbor + cellPoint - pf;
-            float dist = length(diff);
             
-            // Update closest and second closest distances
-            if(dist < result.dist1) {
-                result.dist2 = result.dist1;
-                result.cell2 = result.cell1;
-                result.point2 = result.point1;
-                
-                result.dist1 = dist;
-                result.cell1 = cellId;
-                result.point1 = cellPoint;
-            } 
-            else if(dist < result.dist2) {
-                result.dist2 = dist;
-                result.cell2 = cellId;
-                result.point2 = cellPoint;
-            }
+            // Calculate perpendicular distance to the edge
+            // This is the key part of Inigo's approach
+            float dist = dot(0.5 * (minOffset + diff), normalize(diff - minOffset));
+            edgeDist = min(edgeDist, dist);
         }
     }
+    
+    VoronoiResult result;
+    result.dist = edgeDist;
+    result.cell = minCell;
+    result.point = minPoint;
     
     return result;
 }
 
-// Improved FBM (Fractal Brownian Motion) for multiple octaves of Voronoi noise
+// FBM (Fractal Brownian Motion) for multiple octaves
 VoronoiResult fbmVoronoi(vec2 p) {
     // Start with base octave
     VoronoiResult result = voronoiEnhanced(p * frequency);
     
     // Store base values
-    float value1 = amplitude * result.dist1;
-    float value2 = amplitude * result.dist2;
+    float value = amplitude * result.dist;
+    vec2 baseCell = result.cell;
     
     // Accumulate additional octaves
     float freq = frequency;
@@ -108,13 +117,12 @@ VoronoiResult fbmVoronoi(vec2 p) {
         VoronoiResult octave = voronoiEnhanced(p * freq);
         
         // Add detail to distance values
-        value1 += amp * octave.dist1;
-        value2 += amp * octave.dist2;
+        value += amp * octave.dist;
     }
     
-    // Apply accumulated distances but keep original cell info
-    result.dist1 = value1;
-    result.dist2 = value2;
+    // Apply accumulated distances but keep original cell info for consistent coloring
+    result.dist = value;
+    result.cell = baseCell;
     return result;
 }
 
@@ -125,23 +133,18 @@ void main() {
     // Generate detailed Voronoi information
     VoronoiResult result = fbmVoronoi(noiseCoord);
     
-    // Calculate the edge using the difference between first and second closest points
-    float edge = result.dist2 - result.dist1;
-
-    // pixel-space blur radius
-    float w = fwidth(edge);
-
     // Generate color based on cell ID
-    vec3 cellColor = hash3(result.cell1);
+    vec3 cellColor = hash3(result.cell);
     
     // Apply smoothstep for controllable edge thickness
-    float edgeThreshold = 0.5 * (1.0/frequency); 
-    float edgeThickness = w * (1.0/frequency);
-    float edgeFactor = smoothstep(edgeThickness, edgeThreshold + edgeThickness, edge);
+    float edgeThreshold = 0.05 * (1.0/frequency); 
+    float edgeFactor = smoothstep(0.0, edgeThreshold, result.dist);
     
-    // Final color: bright cell colors with dark edges
-    //vec3 finalColor = mix(  vec3(0.0), cellColor, edgeFactor);
+    // Final color: cell colors with transparent edges
+    // edgeFactor = 1.0 means fully opaque (no edge)
+    // edgeFactor = 0.0 means fully transparent (edge)
     
-    // Output the final color
-    fragment_color = vec4( cellColor, edgeFactor );
+    // Output the final color with alpha channel
+    // The edges will be invisible (transparent) because edgeFactor will be 0 at edges
+    fragment_color = vec4(cellColor, edgeFactor);
 }
