@@ -1,0 +1,1002 @@
+{
+    "image_1.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.11886994540691376,
+            "frequency": 4.0818400382995605,
+            "octaves": 1.0
+        }
+    },
+    "image_2.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.1566409170627594,
+            "frequency": 7.9709153175354,
+            "octaves": 1.0
+        }
+    },
+    "image_3.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8437178134918213,
+            "frequency": 5.565949440002441,
+            "octaves": 1.0
+        }
+    },
+    "image_4.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.443607360124588,
+            "frequency": 2.0481295585632324,
+            "octaves": 1.0
+        }
+    },
+    "image_5.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.7075085639953613,
+            "frequency": 4.517162799835205,
+            "octaves": 1.0
+        }
+    },
+    "image_6.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8289808630943298,
+            "frequency": 5.022164821624756,
+            "octaves": 1.0
+        }
+    },
+    "image_7.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4170405864715576,
+            "frequency": 5.164017200469971,
+            "octaves": 1.0
+        }
+    },
+    "image_8.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.47715649008750916,
+            "frequency": 9.62625503540039,
+            "octaves": 1.0
+        }
+    },
+    "image_9.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.6274469494819641,
+            "frequency": 9.826138496398926,
+            "octaves": 1.0
+        }
+    },
+    "image_10.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.9219667315483093,
+            "frequency": 7.830864429473877,
+            "octaves": 1.0
+        }
+    },
+    "image_11.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8289808630943298,
+            "frequency": 5.022164821624756,
+            "octaves": 1.0
+        }
+    },
+    "image_12.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.27838465571403503,
+            "frequency": 5.458209991455078,
+            "octaves": 1.0
+        }
+    },
+    "image_13.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.3218636214733124,
+            "frequency": 4.157670974731445,
+            "octaves": 1.0
+        }
+    },
+    "image_14.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5096204280853271,
+            "frequency": 1.0,
+            "octaves": 1.0
+        }
+    },
+    "image_15.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.7629677653312683,
+            "frequency": 2.545905590057373,
+            "octaves": 1.0
+        }
+    },
+    "image_16.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.6464330554008484,
+            "frequency": 8.567148208618164,
+            "octaves": 1.0
+        }
+    },
+    "image_17.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.688522458076477,
+            "frequency": 5.776152610778809,
+            "octaves": 1.0
+        }
+    },
+    "image_18.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5997001528739929,
+            "frequency": 8.652207374572754,
+            "octaves": 1.0
+        }
+    },
+    "image_19.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4713541567325592,
+            "frequency": 3.222060203552246,
+            "octaves": 1.0
+        }
+    },
+    "image_20.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.7369519472122192,
+            "frequency": 4.63956880569458,
+            "octaves": 1.0
+        }
+    },
+    "image_21.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.3218636214733124,
+            "frequency": 4.157670974731445,
+            "octaves": 1.0
+        }
+    },
+    "image_22.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4339582920074463,
+            "frequency": 2.9574224948883057,
+            "octaves": 1.0
+        }
+    },
+    "image_23.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5570462346076965,
+            "frequency": 1.0,
+            "octaves": 1.0
+        }
+    },
+    "image_24.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.7568095922470093,
+            "frequency": 5.409584045410156,
+            "octaves": 1.0
+        }
+    },
+    "image_25.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.7606937885284424,
+            "frequency": 4.762792587280273,
+            "octaves": 1.0
+        }
+    },
+    "image_26.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.688522458076477,
+            "frequency": 5.776152610778809,
+            "octaves": 1.0
+        }
+    },
+    "image_27.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8289808630943298,
+            "frequency": 4.091866970062256,
+            "octaves": 1.0
+        }
+    },
+    "image_28.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.30590853095054626,
+            "frequency": 3.4915504455566406,
+            "octaves": 1.0
+        }
+    },
+    "image_29.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.29433974623680115,
+            "frequency": 4.980962753295898,
+            "octaves": 1.0
+        }
+    },
+    "image_30.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.3558536767959595,
+            "frequency": 3.9371161460876465,
+            "octaves": 1.0
+        }
+    },
+    "image_31.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.3218636214733124,
+            "frequency": 4.157670974731445,
+            "octaves": 1.0
+        }
+    },
+    "image_32.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4339582920074463,
+            "frequency": 2.9574224948883057,
+            "octaves": 1.0
+        }
+    },
+    "image_33.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.674667477607727,
+            "frequency": 1.0,
+            "octaves": 1.0
+        }
+    },
+    "image_34.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5410168170928955,
+            "frequency": 1.2340058088302612,
+            "octaves": 1.0
+        }
+    },
+    "image_35.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.3718830943107605,
+            "frequency": 3.703110456466675,
+            "octaves": 1.0
+        }
+    },
+    "image_36.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5205443501472473,
+            "frequency": 1.4900908470153809,
+            "octaves": 1.0
+        }
+    },
+    "image_37.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.3583654761314392,
+            "frequency": 3.6675801277160645,
+            "octaves": 1.0
+        }
+    },
+    "image_38.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.3408263027667999,
+            "frequency": 2.814831495285034,
+            "octaves": 1.0
+        }
+    },
+    "image_39.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.538083553314209,
+            "frequency": 1.2546014785766602,
+            "octaves": 1.0
+        }
+    },
+    "image_40.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.6156936883926392,
+            "frequency": 3.258758544921875,
+            "octaves": 1.0
+        }
+    },
+    "image_41.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5205443501472473,
+            "frequency": 1.4900908470153809,
+            "octaves": 1.0
+        }
+    },
+    "image_42.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5130828022956848,
+            "frequency": 1.606666088104248,
+            "octaves": 1.0
+        }
+    },
+    "image_43.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.34979763627052307,
+            "frequency": 3.785010814666748,
+            "octaves": 1.0
+        }
+    },
+    "image_44.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.722223162651062,
+            "frequency": 1.1086066961288452,
+            "octaves": 1.0
+        }
+    },
+    "image_45.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5546988248825073,
+            "frequency": 1.381484031677246,
+            "octaves": 1.0
+        }
+    },
+    "image_46.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.37908872961997986,
+            "frequency": 3.3914716243743896,
+            "octaves": 1.0
+        }
+    },
+    "image_47.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5202935338020325,
+            "frequency": 1.5101141929626465,
+            "octaves": 1.0
+        }
+    },
+    "image_48.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4337783753871918,
+            "frequency": 3.844309091567993,
+            "octaves": 1.0
+        }
+    },
+    "image_49.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.40469253063201904,
+            "frequency": 3.270784378051758,
+            "octaves": 1.0
+        }
+    },
+    "image_50.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5410168170928955,
+            "frequency": 2.406754493713379,
+            "octaves": 1.0
+        }
+    },
+    "image_51.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5205443501472473,
+            "frequency": 1.4900908470153809,
+            "octaves": 1.0
+        }
+    },
+    "image_52.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5891415476799011,
+            "frequency": 2.752641439437866,
+            "octaves": 1.0
+        }
+    },
+    "image_53.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.6461644172668457,
+            "frequency": 1.0,
+            "octaves": 1.0
+        }
+    },
+    "image_54.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5130828022956848,
+            "frequency": 1.606666088104248,
+            "octaves": 1.0
+        }
+    },
+    "image_55.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5410168170928955,
+            "frequency": 2.406754493713379,
+            "octaves": 1.0
+        }
+    },
+    "image_56.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5314545035362244,
+            "frequency": 2.1328701972961426,
+            "octaves": 1.0
+        }
+    },
+    "image_57.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.522645115852356,
+            "frequency": 1.8805503845214844,
+            "octaves": 1.0
+        }
+    },
+    "image_58.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5198103785514832,
+            "frequency": 1.501558542251587,
+            "octaves": 1.0
+        }
+    },
+    "image_59.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5138168334960938,
+            "frequency": 1.5951982736587524,
+            "octaves": 1.0
+        }
+    },
+    "image_60.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.3433474898338318,
+            "frequency": 1.4900908470153809,
+            "octaves": 1.0
+        }
+    },
+    "image_61.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5138168334960938,
+            "frequency": 1.5951982736587524,
+            "octaves": 1.0
+        }
+    },
+    "image_62.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5280064940452576,
+            "frequency": 1.1295198202133179,
+            "octaves": 1.0
+        }
+    },
+    "image_63.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5268271565437317,
+            "frequency": 1.983382225036621,
+            "octaves": 1.0
+        }
+    },
+    "image_64.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.46817460656166077,
+            "frequency": 1.9745839834213257,
+            "octaves": 1.0
+        }
+    },
+    "image_65.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.3889896869659424,
+            "frequency": 1.245029091835022,
+            "octaves": 1.0
+        }
+    },
+    "image_66.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5324376821517944,
+            "frequency": 3.343217134475708,
+            "octaves": 1.0
+        }
+    },
+    "image_67.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5216618776321411,
+            "frequency": 1.852390170097351,
+            "octaves": 1.0
+        }
+    },
+    "image_68.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.3795112371444702,
+            "frequency": 1.4924410581588745,
+            "octaves": 1.0
+        }
+    },
+    "image_69.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4836466312408447,
+            "frequency": 1.4992083311080933,
+            "octaves": 1.0
+        }
+    },
+    "image_70.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.6501148343086243,
+            "frequency": 1.3321661949157715,
+            "octaves": 1.0
+        }
+    },
+    "image_71.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5138168334960938,
+            "frequency": 1.5951982736587524,
+            "octaves": 1.0
+        }
+    },
+    "image_72.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4579930007457733,
+            "frequency": 1.7539873123168945,
+            "octaves": 1.0
+        }
+    },
+    "image_73.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4483453631401062,
+            "frequency": 1.7218358516693115,
+            "octaves": 1.0
+        }
+    },
+    "image_74.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.390161395072937,
+            "frequency": 1.564564824104309,
+            "octaves": 1.0
+        }
+    },
+    "image_75.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5110117197036743,
+            "frequency": 1.8254221677780151,
+            "octaves": 1.0
+        }
+    },
+    "image_76.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5184534788131714,
+            "frequency": 1.0,
+            "octaves": 1.0
+        }
+    },
+    "image_77.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.6590214967727661,
+            "frequency": 1.700382947921753,
+            "octaves": 1.0
+        }
+    },
+    "image_78.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4915750026702881,
+            "frequency": 2.2769293785095215,
+            "octaves": 1.0
+        }
+    },
+    "image_79.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4449923634529114,
+            "frequency": 1.5686259269714355,
+            "octaves": 1.0
+        }
+    },
+    "image_80.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.4808789789676666,
+            "frequency": 1.5951982736587524,
+            "octaves": 1.0
+        }
+    },
+    "image_81.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.6590214967727661,
+            "frequency": 1.700382947921753,
+            "octaves": 1.0
+        }
+    },
+    "image_82.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5138168334960938,
+            "frequency": 1.5951982736587524,
+            "octaves": 1.0
+        }
+    },
+    "image_83.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.6690003275871277,
+            "frequency": 2.0745553970336914,
+            "octaves": 1.0
+        }
+    },
+    "image_84.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8014250993728638,
+            "frequency": 1.6382441520690918,
+            "octaves": 1.0
+        }
+    },
+    "image_85.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8729867935180664,
+            "frequency": 1.7290281057357788,
+            "octaves": 1.0
+        }
+    },
+    "image_86.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8146659731864929,
+            "frequency": 1.89037024974823,
+            "octaves": 1.0
+        }
+    },
+    "image_87.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.5936256647109985,
+            "frequency": 2.5018692016601563,
+            "octaves": 1.0
+        }
+    },
+    "image_88.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.0,
+            "frequency": 2.165079116821289,
+            "octaves": 1.0
+        }
+    },
+    "image_89.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8122581839561462,
+            "frequency": 1.217160701751709,
+            "octaves": 1.0
+        }
+    },
+    "image_90.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8564549684524536,
+            "frequency": 1.9816514253616333,
+            "octaves": 1.0
+        }
+    },
+    "image_91.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8729867935180664,
+            "frequency": 1.7290281057357788,
+            "octaves": 1.0
+        }
+    },
+    "image_92.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8456080555915833,
+            "frequency": 1.804770231246948,
+            "octaves": 1.0
+        }
+    },
+    "image_93.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8420447111129761,
+            "frequency": 1.8146281242370603,
+            "octaves": 1.0
+        }
+    },
+    "image_94.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8841996788978577,
+            "frequency": 1.7290281057357788,
+            "octaves": 1.0
+        }
+    },
+    "image_95.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8122581839561462,
+            "frequency": 1.217160701751709,
+            "octaves": 1.0
+        }
+    },
+    "image_96.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8729867935180664,
+            "frequency": 1.7290281057357788,
+            "octaves": 1.0
+        }
+    },
+    "image_97.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 1.0,
+            "frequency": 2.165079116821289,
+            "octaves": 1.0
+        }
+    },
+    "image_98.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.8428419828414917,
+            "frequency": 1.8090107440948489,
+            "octaves": 1.0
+        }
+    },
+    "image_99.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.7055690288543701,
+            "frequency": 1.8224749565124512,
+            "octaves": 1.0
+        }
+    },
+    "image_100.png": {
+        "tags": [
+            "voronoi"
+        ],
+        "parameters": {
+            "amplitude": 0.7810783386230469,
+            "frequency": 1.0,
+            "octaves": 1.0
+        }
+    }
+}
