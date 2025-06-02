@@ -1,3 +1,6 @@
+/*
+* Codigo realizado por Hugo Montañés García.
+*/
 
 #include "GeneticAlgorithm.hpp"
 #include "ONNXModel.hpp"

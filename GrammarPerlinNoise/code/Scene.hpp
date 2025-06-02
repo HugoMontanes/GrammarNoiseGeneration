@@ -1,3 +1,6 @@
+/*
+* Codigo realizado por Hugo Montañés García.
+*/
 
 #pragma once
 
@@ -83,6 +86,8 @@ namespace space
             }
         }
 
+        bool exitRequested = false;
+
     public:
         
         Scene(unsigned width, unsigned height);
@@ -118,5 +123,7 @@ namespace space
         }
 
         bool checkFramebufferStatus();
+
+        bool isExitRequested()const { return exitRequested;  }
     };
 }

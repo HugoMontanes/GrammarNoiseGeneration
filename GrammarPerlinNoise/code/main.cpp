@@ -1,3 +1,7 @@
+/*
+* Codigo realizado por Hugo Montañés García.
+*/
+
 #include "Scene.hpp"
 #include "GeneticAlgorithm.hpp"
 #include "Window.hpp"
@@ -158,6 +162,14 @@ int main(int, char* []) {
                         oct != scene.getOctaves()) {
                         currentMode = Mode::MANUAL;
                     }
+
+                    if (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
+                    {
+                        running = false;
+                        std::cout << "Exit requested. Shutting down application..." << std::endl;
+                    }
+
+                    SDL_Delay(5);
                 }
             }
         }

@@ -1,3 +1,7 @@
+/*
+* Codigo realizado por Hugo Montañés García.
+*/
+
 #include "ShaderParameterLogger.hpp"
 #include <iostream>
 #include <fstream>

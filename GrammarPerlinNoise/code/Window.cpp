@@ -1,6 +1,6 @@
-
-// Este código es de dominio público
-// angel.rodriguez@udit.es
+/*
+* Codigo realizado por Hugo Montañés García.
+*/
 
 #pragma once
 

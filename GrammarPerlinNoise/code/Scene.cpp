@@ -1,4 +1,7 @@
-﻿
+﻿/*
+* Codigo realizado por Hugo Montañés García.
+*/
+
 #include "Scene.hpp"
 
 #include <iostream>
@@ -463,6 +466,7 @@ namespace space
 
 		if (EscIsPressed && !EscWasPressed)
 		{
+			exitRequested = true;
 			SDL_Quit();
 		}
 

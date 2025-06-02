@@ -1,3 +1,7 @@
+/*
+* Codigo realizado por Hugo Montañés García.
+*/
+
 #include "ONNXModel.hpp"
 #include <onnxruntime_cxx_api.h>
 #include <opencv2/opencv.hpp>

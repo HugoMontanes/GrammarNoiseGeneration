@@ -1,3 +1,7 @@
+/*
+* Codigo realizado por Hugo Montañés García.
+*/
+
 #pragma once
 
 #include <string>
@@ -25,11 +29,6 @@ namespace space
 		}
 
 		bool loadFromFile(const std::string& file_path);
-
-		bool loadFromString(const std::string& source)
-		{
-			return compile(source);
-		}
 
 		GLuint getShaderID() const {
 			return shader_id;
